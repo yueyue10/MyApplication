@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.alibaba.sophix.demo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.alibaba.sophix.demo.MainApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24846106-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="b3870db21291f02f8a8f3308a9331560" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDCdrpWWkRyize4yQJBseXysb84rRRK9sbIr2GkwqgYbRAVMUb8Oa5brnNc8lug6b1yhR9cBaKE2rrA+GCPABFCEvCKRzqWTkcuvFjANwObbJT73+ZihGOBAnKaIg2J0CV2Ydo/tA01tlH8PWgbwfQDYOAJf+wYxLLiBROrKT3sGOJ13iflQEQLKJ8qbE9rNDnoleotzjnqCI6ulj18ISBxlIxIQ52S+48DQIL603mjUscIqzTvkPzxD75tWSHZuet8mju5Cjw8UTjw1D5W7EgnFmWzCs/IgZkGoXnZDcc+IbepAXODhebMiFZ9IYmc+7doZgi6wjp7WgvKGsCgG3cRAgMBAAECggEAXe5Lg3qGpW1ptPAjDuiHUftZil7P9oXM7xMH7zW3TFUh95qd1ydleROC1dqbN9avk6mJxEFUhyfAHYXb3jcCHxBW7/QH8KJO79w6Yl4wd9qy/BbiiaO5DI/KG3lnYLIR5mTNrwehedhfMZ/XsdC1tQwOK4iG2k/ouBQLtBlvt6JVxmAg/YNrc3a+H+yLz5HB1VnZLQvM5acp5FSNq240xkqAlrMtG5jk58MhEXcYq5sYjRZpyqzaDsQzZKq4yJccY90bXlwEoMcZUOSNUuZ0zqnO+RlqHagiPVYmCfBJilFdNVBDZl2GLdux2HVIEIF2KdA/ED4euejrKfzTXatWIQKBgQDobORX8f8PLMZQZ/MxHSEygRec1uMY8rJKiIYHmwW3lD2ISu9+HxxvSOiMq51SNhOEhH7EqKjEivZ8VDSM9NaNgQssC76ArrHLGdiUqAAUSDNawadiYlzz1ePhjX1cYozMwwrsq2TLAUI1ofIARSLg60WwEeSXNy4oPV50l4QAKwKBgQDWMCIv+jTG9ck5rgH72oxBxE01zJ++KhcP+dL+DBkkxMLvy3uOalAUA0FP4CDJiCFFr1V27otHgiA6U+bRbBpA2HtV1+9jVaGMDXlQ3F9+CPM8WMTEnbLINgrg8o6DWzPQQSOtrDGRtN/IUbcBLVRqvovc9TqtnglM6kkH9CiLswKBgQDXd1M8IFB2beiu058Esd97pWcRc7h2AU+9ftDZriHfrOJaPjXFMuw2Ul2bQuEGPLFdUUL/5ucFxVl5qspIvhVEexOzUnPZcZnLEfvQ2+mu47wP76TPtSY8udWW3IcRpR6oGExBWSaId3M8qxPgojcSUal57yx97p6wmSu+ZFPvnwKBgQCzirWdsgb7oJyFFS/khlZ76qkuJ9Df/zhF1AzhmBKbl7QwfkmcH9HwdKoS4rWZOdtqJodloqBt2M5bFmmtswhuwwjf9JpekjFQzRqchZ4mcCo0s9R9XBO5cFO+LJT510GfmHrn4ifLE+tiZ90Xx3+z2vYyyf3d+1OgfeOqHyi9sQKBgQDH98DQWqJhdKtGdEy6Gqi2mhamAl7ABGBKo+11+48OuIv255I4GWDRXRBdvy+eI+6LbogEz6oojXdUWdV2iJFnL8gkV7fvRwgtF4KqbP5SkIQnOlrH5HKx4moWvD4mqdLA84mXYaQXMeZiCpLzYCu3xEiZRAEjgT5ofm5PSJKFEw==" />
+
+        <activity
+            android:name="com.alibaba.sophix.demo.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.alibaba.sophix.demo.ResTestActivity" />
+        <activity android:name="com.alibaba.sophix.demo.AboutActivity"
+                  android:label="关于我们"/>
+        <activity android:name="com.alibaba.sophix.demo.HelperActivity"
+                  android:label="帮助中心"/>
+    </application>
+
+</manifest>
