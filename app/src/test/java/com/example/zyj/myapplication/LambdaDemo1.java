@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 /**
  * Lambda 表达式有何用处？如何使用？
+ * 这里的Persion只能引用工程里面的，因为@Data注解只在工程里面才有效果
  * https://www.zhihu.com/question/20125256/answer/324121308
  * Created by zhaoyuejun on 2018/4/12.
  */
@@ -85,6 +86,9 @@ public class LambdaDemo1 {
         init();
         checkAndExecute1(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.pl(persion.getFirstName()));
         checkAndExecute2(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.pl(persion.getFirstName()));
+//        输出：
+//        D/LOG------: Yixing
+//        D/LOG------: Yixing
     }
 }
 
