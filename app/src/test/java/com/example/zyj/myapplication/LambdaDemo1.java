@@ -1,11 +1,8 @@
-package com.encdata.zyj.myapplication.lambda;
+package com.example.zyj.myapplication;
 
-import android.os.Build;
-import android.view.View;
-import android.widget.ImageView;
+import com.encdata.zyj.myapplication.lambda.Persion;
 
-import com.encdata.zyj.myapplication.Klog;
-import com.encdata.zyj.myapplication.R;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +17,9 @@ import java.util.function.Predicate;
 
 public class LambdaDemo1 {
 
-    static List<Persion> guiltyPersions = new ArrayList<>();
+    private List<Persion> guiltyPersions = new ArrayList<>();
 
-    public static void init() {
+    public void init() {
         Persion persion1 = new Persion("Yixing", "Zhao", 23);
         Persion persion2 = new Persion("Yanggui", "Li", 23);
         Persion persion3 = new Persion("Chao", "Ma", 23);
@@ -35,13 +32,12 @@ public class LambdaDemo1 {
      * 打印出guiltyPersons List里面所有LastName以"Z"开头的人的FirstName。
      * 原生态Lambda写法：定义两个函数式接口，定义一个静态函数，调用静态函数并给参数赋值Lambda表达式
      */
-    public static void test1(ImageView view) {
+    @Test
+    public void test1() {
         init();
-        checkAndExecute(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.d(persion.getFirstName()));
+        checkAndExecute(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.pl(persion.getFirstName()));
 //        输出：
 //        D/LOG------: Yixing
-        view.setImageResource(R.mipmap.icon_lambda1);
-        view.setVisibility(View.VISIBLE);
     }
 
     @FunctionalInterface
@@ -68,31 +64,27 @@ public class LambdaDemo1 {
      * 直接用Java 8函数式接口包里的Predicate<T>和Consumer<T>就可以了——因为他们这一对的接口定义和NameChecker/Executor其实是一样的。
      */
 //    第一步简化 - 利用函数式接口包：
-    public static void checkAndExecute1(List<Persion> persions, Predicate<Persion> predicate, Consumer<Persion> consumer) {
+    public void checkAndExecute1(List<Persion> persions, Predicate<Persion> predicate, Consumer<Persion> consumer) {
         //静态函数里面的for each循环其实是非常碍眼的。
         //这里可以利用Iterable自带的forEach()来替代。forEach()本身可以接受一个Consumer<T> 参数。
         for (Persion persion : persions) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (predicate.test(persion))
-                    consumer.accept(persion);
-            }
+            if (predicate.test(persion))
+                consumer.accept(persion);
         }
     }
 
     //    第二步简化 -用Iterable.forEach() 取代foreach loop：
-    public static void checkAndExecute2(List<Persion> persions, Predicate<Persion> predicate, Consumer<Persion> consumer) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            persions.forEach(persion -> {
-                if (predicate.test(persion)) consumer.accept(persion);
-            });
-        }
+    public void checkAndExecute2(List<Persion> persions, Predicate<Persion> predicate, Consumer<Persion> consumer) {
+        persions.forEach(persion -> {
+            if (predicate.test(persion)) consumer.accept(persion);
+        });
     }
 
-    //这个目前运行不了，因为lambda不支持在7.0以下系统运行的关系
-    public static void test2() {
+    @Test
+    public void test2() {
         init();
-        checkAndExecute1(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> System.out.println(persion.getFirstName()));
-        checkAndExecute2(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> System.out.println(persion.getFirstName()));
+        checkAndExecute1(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.pl(persion.getFirstName()));
+        checkAndExecute2(guiltyPersions, persion -> persion.getLastName().startsWith("Z"), persion -> Klog.pl(persion.getFirstName()));
     }
 }
 
