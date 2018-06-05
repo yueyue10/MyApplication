@@ -19,7 +19,7 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
   <h4 align="center">热修复功能在资源测试界面的体现</h4>
   <img src="doc/pic_hotfixapp_restestac_mix.jpg" width="700"  />
 </div>
-<h5><a href="https://github.com/yueyue10/MyApplication/blob/master/doc/hotfix_history/%E9%98%BF%E9%87%8C%E7%83%AD%E4%BF%AE%E5%A4%8D_1.0.0_%E6%B5%8B%E8%AF%95.apk" download="阿里热修复_1.0.0_测试.apk">点击</a>获取热修复APP进行体验</h5>
+<h5><a href="https://github.com/yueyue10/MyApplication/blob/master/doc/hotfix_history/%E9%98%BF%E9%87%8C%E7%83%AD%E4%BF%AE%E5%A4%8D_1.0.0_%E6%B5%8B%E8%AF%95.apk?raw=true" download="阿里热修复_1.0.0_测试.apk">点击</a>获取热修复APP进行体验</h5>
 ### GreenDao效果图
 
 >#### 下面是数据库GreenDao的操作界面
