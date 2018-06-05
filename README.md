@@ -30,7 +30,7 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 </div>
 
 <div align="center">
-<p align="center" style="width:50%; solid red" >点击“新增偏航数据”按钮后，进入行程提醒界面可看到新增的数据。再次点击“新增偏航数据”按钮后，新城提醒界面数据更新可进入查看</p>
+<p align=" style="width:50%; solid red" >点击“新增偏航数据”按钮后，进入行程提醒界面可看到新增的数据。再次点击“新增偏航数据”按钮后，新城提醒界面数据更新可进入查看</p>
 <p align="center">执行的方法为：insertOrReplaceData，如果新增数据id已经存在就会覆盖之前的数据。</p>
 <img src="doc/pic_greendao_recomdroute.jpg" width="300" hegiht="500" align="center"/> 
 </div>
