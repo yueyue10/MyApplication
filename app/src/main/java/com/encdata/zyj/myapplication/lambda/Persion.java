@@ -14,4 +14,34 @@ public class Persion {
     private String lastName;
     @NonNull
     private int age;
+
+    public Persion(String yixing, String zhao, int i) {
+        this.firstName = yixing;
+        this.lastName = zhao;
+        this.age = i;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

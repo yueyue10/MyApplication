@@ -30,11 +30,11 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    compile  fileTree(dir: 'libs', include: ['*.jar'])
+    compile  'com.android.support:appcompat-v7:26.1.0'
+    compile  'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
@@ -43,4 +43,5 @@ dependencies {
 
     compile 'org.projectlombok:lombok:1.16.14'
     annotationProcessor "org.projectlombok:lombok:1.16.14"
+//    compile 'com.github.vondear:RxTools:v1.7.6'//请替换成上方 JitPack 最新的版本号
 }

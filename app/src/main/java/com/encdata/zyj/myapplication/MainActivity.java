@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         process();
+//        RxDeviceUtils.
     }
 
     private void process() {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doSomething() {
-        LambdaDemo1.test2();
+        LambdaDemo1.test1(display_iv);
     }
 
 }
