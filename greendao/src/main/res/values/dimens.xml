@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txs0">12sp</dimen>
+    <dimen name="txs1">14sp</dimen>
+    <dimen name="txs2">16sp</dimen>
+    <dimen name="txs3">18sp</dimen>
+    <dimen name="txs4">20sp</dimen>
+    <dimen name="txs5">22sp</dimen>
+    <dimen name="txs6">24sp</dimen>
+</resources>

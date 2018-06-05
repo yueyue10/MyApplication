@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dd_list_Gray"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/remind_titletv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:text="行程提醒"
+        android:textColor="#555555"
+        android:textSize="@dimen/txs2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/remind_contenttv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:minLines="1"
+        android:padding="10dp"
+        android:textSize="@dimen/txs1"
+        tools:text="野生铁皮石斛，有“植物药界大熊猫”和“救命仙草”的美称。因其生存条件苛刻，自然产量稀少，加之长期掠夺式采掘，濒临枯竭，被国家列为二级濒危保护植物。" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="绎景通" />
+
+        <TextView
+            android:id="@+id/remind_timetv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="2017-11-15 14:45" />
+    </LinearLayout>
+</LinearLayout>

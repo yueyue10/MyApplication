@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.greendao.bean.Student;
 import com.example.greendao.dao.StudentDao;
+import com.socks.library.KLog;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -32,7 +33,11 @@ public class StudentDaoOpe {
         if (null == list || list.size() <= 0) {
             return;
         }
-        DbManager.getDaoSession(context).getStudentDao().insertInTx(list);
+        try {
+            DbManager.getDaoSession(context).getStudentDao().insertInTx(list);
+        } catch (Exception e) {
+            KLog.e(Log.getStackTraceString(e));
+        }
     }
 
     /**

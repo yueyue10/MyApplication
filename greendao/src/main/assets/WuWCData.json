@@ -1,0 +1,94 @@
+{
+  "result": 3,
+  "message": "景点推荐",
+  "value": [
+    {
+      "code": "15",
+      "codeType": 1,
+      "distance": 0,
+      "description": "无蚊村描述",
+      "lon": 116.97452,
+      "pid": 15,
+      "result": 3,
+      "crowds": [
+        {
+          "code": 0,
+          "name": "中年",
+          "id": 4
+        },
+        {
+          "code": 0,
+          "name": "老人",
+          "id": 5
+        }
+      ],
+      "scenic": 1,
+      "type": "景点",
+      "sid": 0,
+      "picUrl": "http://travel.enn.cn/group1/M00/00/17/CiaAUlqXyueAFxxGAAFPJdEFD38210.jpg",
+      "redLangue": "http://travel.enn.cn/group1/M00/00/17/CiaAUlqXyLiAcOXMAAzSr7zxW_0608.mp3",
+      "enName": "",
+      "resDetail": 0,
+      "startTime": "8:00",
+      "id": 32,
+      "state": 0,
+      "radius": 100,
+      "lat": 28.08627,
+      "optimumTime": "",
+      "scode": 5,
+      "updateTime": "2018-03-01 18:11:10",
+      "isUsed": 1,
+      "tags": [],
+      "grade": 1,
+      "name": "无蚊村",
+      "sides": [],
+      "comment": "点评",
+      "endTime": "17:30",
+      "suitableTime": 20
+    },
+    {
+      "code": "15",
+      "codeType": 1,
+      "distance": 0,
+      "description": "象鼻山描述",
+      "lon": 116.97452,
+      "pid": 15,
+      "result": 9,
+      "crowds": [
+        {
+          "code": 0,
+          "name": "中年",
+          "id": 4
+        },
+        {
+          "code": 0,
+          "name": "老人",
+          "id": 5
+        }
+      ],
+      "scenic": 1,
+      "type": "景点",
+      "sid": 0,
+      "picUrl": "https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike116%2C5%2C5%2C116%2C38/sign=0d4a4b8540166d222c7a1dc6274a6292/242dd42a2834349b5b8aa2cbcaea15ce37d3bef4.jpg",
+      "redLangue": "http://travel.enn.cn/group1/M00/00/17/CiaAUlqXyLiAcOXMAAzSr7zxW_0608.mp3",
+      "enName": "",
+      "resDetail": 0,
+      "startTime": "8:00",
+      "id": 30,
+      "state": 0,
+      "radius": 100,
+      "lat": 28.08627,
+      "optimumTime": "",
+      "scode": 5,
+      "updateTime": "2018-03-01 18:11:10",
+      "isUsed": 1,
+      "tags": [],
+      "grade": 1,
+      "name": "象鼻山",
+      "sides": [],
+      "comment": "点评",
+      "endTime": "17:30",
+      "suitableTime": 20
+    }
+  ]
+}

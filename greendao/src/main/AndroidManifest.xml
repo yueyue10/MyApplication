@@ -2,20 +2,45 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.greendao">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/MyTheme">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Json列表数据展示界面-->
+        <activity
+            android:name=".MyJsonListAc"
+            android:screenOrientation="portrait" />
+        <!--Json数据展示界面-->
+        <activity
+            android:name=".MyJsonDetailAc"
+            android:screenOrientation="portrait" />
+        <!--推荐的消息列表界面-->
+        <activity
+            android:name=".GuideRecomdAc"
+            android:screenOrientation="portrait" />
+        <!--提示的消息列表界面-->
+        <activity
+            android:name=".GuideRemindAc"
+            android:screenOrientation="portrait" />
+        <!--消息列表界面-->
+        <activity
+            android:name=".MyMessageAc"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

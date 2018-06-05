@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/add_recomd_routetv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#8989ff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="新增偏航数据"
+            android:textColor="#232323" />
+
+        <TextView
+            android:id="@+id/add_recomd_spottv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#8989ff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="新增推荐数据"
+            android:textColor="#232323" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/clear_recomd_routetv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#8989ff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="清除偏航数据"
+            android:textColor="#232323" />
+
+        <TextView
+            android:id="@+id/clear_recomd_spottv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#8989ff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="清除推荐数据"
+            android:textColor="#232323" />
+
+        <TextView
+            android:id="@+id/clear_jsontv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="#8989ff"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="清除JSON数据"
+            android:textColor="#232323" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:divider="@null" />
+
+</LinearLayout>

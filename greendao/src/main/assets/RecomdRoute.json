@@ -1,0 +1,96 @@
+{
+  "result": 7,
+  "message": "已偏航",
+  "value": [
+    {
+      "lineId": "",
+      "startTimeStr": "",
+      "lon": 116.36391,
+      "updateTime": "2018-03-20 09:39:37",
+      "strengthId": 1,
+      "touristId": 19,
+      "rids": [
+        0,
+        7,
+        11,
+        14
+      ],
+      "viewId": 1,
+      "peopleCount": "1",
+      "startId": 0,
+      "name": "方案一",
+      "comment": "最优方案",
+      "startTime": "2018-03-20 00:00:00",
+      "tourTypeId": 1,
+      "coverPic": "111",
+      "id": 32,
+      "state": 2,
+      "pids": [
+        15,
+        20,
+        37,
+        42
+      ],
+      "items": [
+        1
+      ],
+      "lat": 40.049232,
+      "startName": "我的位置"
+    },
+    {
+      "lineId": "",
+      "startTimeStr": "",
+      "lon": 0,
+      "updateTime": "",
+      "strengthId": 1,
+      "touristId": 0,
+      "rids": [
+        14,
+        33
+      ],
+      "viewId": 0,
+      "peopleCount": "1",
+      "startId": 0,
+      "name": "方案二",
+      "comment": "时间最短方案",
+      "startTime": "2018-03-20 10:47:50",
+      "tourTypeId": 0,
+      "coverPic": "111",
+      "id": 1,
+      "state": 1,
+      "pids": [],
+      "items": [
+        1
+      ],
+      "lat": 116.3511,
+      "startName": "我的位置"
+    },
+    {
+      "lineId": "",
+      "startTimeStr": "",
+      "lon": 0,
+      "updateTime": "",
+      "strengthId": 1,
+      "touristId": 0,
+      "rids": [
+        33
+      ],
+      "viewId": 0,
+      "peopleCount": "1",
+      "startId": 0,
+      "name": "方案三",
+      "comment": "行走最少方案",
+      "startTime": "2018-03-20 10:47:50",
+      "tourTypeId": 0,
+      "coverPic": "111",
+      "id": 2,
+      "state": 1,
+      "pids": [],
+      "items": [
+        1
+      ],
+      "lat": 116.3511,
+      "startName": "我的位置"
+    }
+  ]
+}

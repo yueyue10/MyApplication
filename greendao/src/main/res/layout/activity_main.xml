@@ -49,6 +49,12 @@
             android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:text="删除全部" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多案例" />
     </LinearLayout>
 
     <ScrollView
