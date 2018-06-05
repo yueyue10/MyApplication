@@ -31,5 +31,6 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
  
 <img src="doc/pic_greendao_jsonlist.jpg" width="300" hegiht="500" /> <img src="doc/pic_greendao_jsonstr.jpg" width="300" hegiht="500" />
 
+#### 使用insertData方法，如果数据库存在对应的id值会报下面的错。使用insertOrReplaceData方法则会将id相同的数据进行更新
 >![GreenDao效果图](doc/pic_greendao_error.png)
 
