@@ -19,19 +19,17 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 
 ### GreenDao效果图
 
-<figure class="half">
-   <img src="https://raw.github.com/yueyue10/MyApplication/master/doc/pic_greendao_student.jpg" width="200"  />
-    <img src="https://raw.github.com/yueyue10/MyApplication/master/doc/pic_greendao_message.jpg" width="200" />
-</figure>
+<div align="center">
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/pic_greendao_student.jpg" width="300"  />
 
-<img src="doc/pic_greendao_message.jpg" width="300" hegiht="500" />
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/pic_greendao_message.jpg" width="300" />
+</div>
+ 
+<img src="doc/pic_greendao_recomdroute.jpg" width="300" hegiht="500" /> 
 
-![GreenDao效果图](doc/pic_greendao_recomdroute.jpg) ![GreenDao效果图](doc/pic_greendao_remid1.jpg)
-
->![GreenDao效果图](doc/pic_green_dao_remind2.jpg)
-
->![GreenDao效果图](doc/pic_greendao_jsonlist.jpg)
-
->![GreenDao效果图](doc/pic_greendao_jsonstr.jpg)
+<img src="doc/pic_greendao_remid1.jpg" width="300" hegiht="500" /> <img src="doc/pic_green_dao_remind2.jpg" width="300" hegiht="500" />
+ 
+<img src="docdoc/pic_greendao_jsonlist.jpg" width="300" hegiht="500" /> <img src="doc/pic_greendao_jsonstr.jpg" width="300" hegiht="500" />
 
 >![GreenDao效果图](doc/pic_greendao_error.png)
+
