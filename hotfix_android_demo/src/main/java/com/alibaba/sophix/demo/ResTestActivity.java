@@ -17,11 +17,11 @@ public class ResTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restest);
 
         tv = (TextView) findViewById(R.id.tv);
-        tv.setText("哈哈哈哈哈哈");
+        tv.setText("当前文档");
         tv.setTextColor(getResources().getColor(R.color.colorBlack));
 
         iv = (ImageView) findViewById(R.id.iv);
-        iv.setImageResource(R.mipmap.icon_marker_show_jj);
+        iv.setImageResource(R.mipmap.old);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setHomeButtonEnabled(true);
