@@ -43,7 +43,7 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 </div>
 
 <div align="center">
-<p align="center" width="300">点击“新增推荐数据”或者“新增推荐数据”按钮后，都会将json数据保存到数据库。可以进入导引消息界面查看。</p>
+<p align="center" width="300">点击“新增推荐数据”或者“新增推荐数据”按钮后，都会将json数据保存到数据库。<br>可以进入导引消息界面查看。</p>
 <p align="center">执行的方法为：insertData，新增数据id会按序增加。</p>
 <img src="doc/pic_greendao_jsonlist.jpg" width="300" hegiht="500" /> 
 <img src="doc/pic_greendao_jsonstr.jpg" width="300" hegiht="500" />
