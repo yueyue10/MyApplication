@@ -44,7 +44,7 @@ public class StudentDao extends AbstractDao<Student, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"STUDENT\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
                 "\"AGE\" INTEGER NOT NULL ," + // 2: age
                 "\"NUM\" TEXT," + // 3: num
