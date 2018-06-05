@@ -19,10 +19,10 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 
 ### GreenDao效果图
 
-<figure class="half">
+<center class="half">
    <img src="doc/pic_greendao_student.jpg" width="300" hegiht="500" />
     <img src="doc/pic_greendao_message.jpg" width="300" hegiht="500"/>
-</figure>
+</center>
 
 
 >![GreenDao效果图](doc/pic_greendao_message.jpg)
