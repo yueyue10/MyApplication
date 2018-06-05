@@ -18,7 +18,7 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 >![阿里云热修复效果图](doc/pic_hotfixapp_restestac_mix.jpg)
 
 ### GreenDao效果图
->![GreenDao效果图](doc/pic_greendao_student.jpg)
+>![GreenDao效果图](doc/pic_greendao_student.jpg =200x)
 
 >![GreenDao效果图](doc/pic_greendao_message.jpg)
 
