@@ -25,11 +25,11 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 <img src="https://raw.github.com/yueyue10/MyApplication/master/doc/pic_greendao_message.jpg" width="300" />
 </div>
  
-<img src="doc/pic_greendao_recomdroute.jpg" width="300" hegiht="500" /> 
+<img src="doc/pic_greendao_recomdroute.jpg" width="300" hegiht="500" align="center"/> 
 
 <img src="doc/pic_greendao_remid1.jpg" width="300" hegiht="500" /> <img src="doc/pic_green_dao_remind2.jpg" width="300" hegiht="500" />
  
-<img src="docdoc/pic_greendao_jsonlist.jpg" width="300" hegiht="500" /> <img src="doc/pic_greendao_jsonstr.jpg" width="300" hegiht="500" />
+<img src="doc/pic_greendao_jsonlist.jpg" width="300" hegiht="500" /> <img src="doc/pic_greendao_jsonstr.jpg" width="300" hegiht="500" />
 
 >![GreenDao效果图](doc/pic_greendao_error.png)
 
