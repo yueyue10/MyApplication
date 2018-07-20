@@ -1,4 +1,4 @@
-package com.encdata.catchcraycat;
+package com.encdata.catchcraycat.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.encdata.catchcraycat.ui.bean.Dot;
 import com.socks.library.KLog;
 
 import java.util.HashMap;

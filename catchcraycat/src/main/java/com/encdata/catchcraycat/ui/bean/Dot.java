@@ -1,4 +1,4 @@
-package com.encdata.catchcraycat;
+package com.encdata.catchcraycat.ui.bean;
 
 /**
  * Created by zhaoyuejun on 2018/7/19.
