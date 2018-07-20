@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 /**
+ * 自定义游戏面板布局
  * Created by zhaoyuejun on 2018/7/19.
  */
 
@@ -27,20 +28,24 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
     private static final int COL = 10;//列
     private static final int ROW = 10;//行
     private static final int BLOCKS = 10;//默认添加的路障数量
-//    private boolean justInit;
-    private Dot matrix[][];
-    private Dot cat;
+    //    private boolean justInit;
+    private Dot matrix[][];//存放游戏面板上面的点的二维数组
+    private Dot cat;//猫所在的位置
 
     public Playground(Context context) {
         super(context);
+        //1.为SurfaceView添加状态监听->创建和改变的时候绘制界面布局
         getHolder().addCallback(callBack);
+        //2.初始化游戏数据
         matrix = new Dot[ROW][COL];
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
                 matrix[i][j] = new Dot(j, i);
             }
         }
+        //3.设置触摸监听=====>>>用户点击->更新游戏数据(猫选择逃生的最优的位置、用户点击的点的位置)->更新界面布局
         setOnTouchListener(this);
+        //4.实例化游戏数据->实例化布局中所有点的属性STATUS_OFF->实例化地图中间点的猫的数据STATUS_IN->实例化一定数量的路障点STATUS_ON
         initGame();
     }
 
@@ -141,7 +146,7 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
     /**
      * 猫移动的方法
      */
-    private void move() {
+    private void moveCat() {
         if (isAtEdge(cat)) {//已经在场景边界
             lose();
             return;
@@ -201,7 +206,10 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
         Toast.makeText(getContext(), "You Win", Toast.LENGTH_SHORT).show();
     }
 
-    private void redraw() {
+    /**
+     * 绘制方法
+     */
+    private void reDraw() {
         Canvas canvas = getHolder().lockCanvas();
         canvas.drawColor(Color.LTGRAY);
         Paint paint = new Paint();
@@ -209,7 +217,7 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
         for (int i = 0; i < ROW; i++) {
             int offset = 0;
             for (int j = 0; j < COL; j++) {
-                if (i % 2 != 0) {
+                if (i % 2 != 0) {//如果是奇数行。(从0开始，)
                     offset = WIDTH / 2;
                 }
                 Dot one = getDot(j, i);
@@ -233,13 +241,13 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
     SurfaceHolder.Callback callBack = new SurfaceHolder.Callback() {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
-            redraw();
+            reDraw();
         }
 
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             WIDTH = width / (COL + 1);
-            redraw();
+            reDraw();
         }
 
         @Override
@@ -248,6 +256,9 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
         }
     };
 
+    /**
+     * 初始化游戏中的数据
+     */
     private void initGame() {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
@@ -278,7 +289,7 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
             } else {
                 x = (int) ((event.getX() - WIDTH / 2) / WIDTH);
             }
-            if (x + 1 > COL || y + 1 > ROW) {
+            if (x + 1 > COL || y + 1 > ROW) {//超出游戏面板中所有点的位置
                 initGame();
 //                getNrighbour(cat, k).setStatus(Dot.STATUS_IN);
 //                k++;
@@ -286,11 +297,11 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
 //                for (int i = 1; i < 7; i++) {
 //                    KLog.d(i + "@" + getDistance(cat, i));
 //                }
-            } else if (getDot(x, y).getStatus() == Dot.STATUS_OFF) {
+            } else if (getDot(x, y).getStatus() == Dot.STATUS_OFF) {//如果点击的点是未激活状态
                 getDot(x, y).setStatus(Dot.STATUS_ON);
-                move();
+                moveCat();
             }
-            redraw();
+            reDraw();
         }
         return true;
     }

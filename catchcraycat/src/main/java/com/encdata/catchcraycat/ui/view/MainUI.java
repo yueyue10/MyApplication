@@ -10,7 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
+import com.socks.library.KLog;
+
 /**
+ * 自定义可以左右滑动-带有动画-带有渐变效果的布局
  * Created by zhaoyuejun on 2018/7/20.
  */
 
@@ -36,6 +39,14 @@ public class MainUI extends RelativeLayout {
         initView(context);
     }
 
+    /**
+     * 1.初始化资源数据
+     * ->创建4个布局、设置布局的资源id(供其他界面使用比如其他界面需要在其上面添加控件或者依赖)、设置中间透明遮罩的透明度
+     * ->创建Scroller(提供界面滚动效果)
+     * ->添加子布局到自定义布局界面
+     *
+     * @param context
+     */
     private void initView(Context context) {
         this.context = context;
         mScroller = new Scroller(context, new DecelerateInterpolator());
@@ -57,16 +68,12 @@ public class MainUI extends RelativeLayout {
         midlMask.setAlpha(0);
     }
 
-    //滚动监听方法
-    @Override
-    public void scrollTo(int x, int y) {
-        super.scrollTo(x, y);
-        int curX = Math.abs(getScrollX());
-        float scale = curX / (float) leftMenu.getMeasuredWidth();
-        midlMask.setAlpha(scale);
-    }
-
-    //测量方法，提供控件的宽高设置
+    /**
+     * 2.重写测量方法，设置绘制控件的宽高属性。每个控件都需要设置
+     *
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -78,7 +85,17 @@ public class MainUI extends RelativeLayout {
         rightMenu.measure(tempWidthMeasure, heightMeasureSpec);
     }
 
-    //布局方法，提供控件放置位置
+
+    /**
+     * 3.布局定位方法，设置控件放置位置
+     * 在onLayout方法中对子View，viewChild.layout();布局定位
+     *
+     * @param changed
+     * @param l
+     * @param t
+     * @param r
+     * @param b
+     */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
@@ -88,10 +105,25 @@ public class MainUI extends RelativeLayout {
         rightMenu.layout(l + midlMenu.getMeasuredWidth(), t, l + midlMenu.getMeasuredWidth() + rightMenu.getMeasuredWidth(), b);
     }
 
-    private boolean isTestCompete;//是一个怎样的事件，true代表移动事件
-    private boolean isLeftRightEvent;
+    private boolean isTestCompete;//是否是移动事件
+    private boolean isLeftRightEvent;//是否是左右滑动事件
 
-    //事件分发方法，提供控件手势监听
+    /**
+     * 4.事件分发方法，提供控件手势监听
+     * =>判断上次动作的事件类型(通过上次UP、Cancel动作设置false，通过上次MOVE动作设置true)：
+     * 如果不是移动事件：再次记录动作的类型和动作结束后的点的位置(通过DOWN和MOVE动作记录，方便下次判断)
+     * 如果是移动事件
+     * =>判断是否是左右移动事件
+     * 如果是：判断动作类型
+     *                  ->如果是MOVE动作->判断移动方向并计算移动距离执行scrollTo方法进行移动
+     *                    如果是UP或者CANCEL动作->判断移动方向利用Scroller执行滚动动画并执行重绘方法
+     * 如果不是：重置是否滑动和是否左右滑动标识
+     *
+     * 问题疑点？？？
+     * dis_x定义、在156行判断滑动距离是否超过左右布局的一半。
+     * @param ev
+     * @return
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (!isTestCompete) {
@@ -101,16 +133,21 @@ public class MainUI extends RelativeLayout {
         if (isLeftRightEvent) {
             switch (ev.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
-                    int curScrollX = getScrollX();//滚动距离
+                    int curScrollX = getScrollX();//滚动距离->向左移动值为正，向右移动值为负
                     int dis_x = (int) (ev.getX() - point.x);//滑动距离
+                    KLog.d("curScrollX=" + curScrollX+"____dis_x="+dis_x);
                     int expectX = -dis_x + curScrollX;
-                    int finalX = 0;
-                    if (expectX < 0) {
+                    int finalX = 0;//手指滑动的差距
+                    if (expectX < 0) {//向左滑动
+                        KLog.d("expectX="+expectX+"____leftMenu="+-leftMenu.getMeasuredWidth());
                         finalX = Math.max(expectX, -leftMenu.getMeasuredWidth());
-                    } else {
+                    } else {//向右滑动
+                        KLog.d("expectX="+expectX+"____rightMenu="+rightMenu.getMeasuredWidth());
                         finalX = Math.min(expectX, rightMenu.getMeasuredWidth());
                     }
-                    scrollTo(finalX, 0);
+                    KLog.d("finalX=" + finalX);
+//                    KLog.d("curScrollX=" + curScrollX);
+                    scrollTo(expectX, 0);
                     point.x = (int) ev.getX();
                     break;
                 case MotionEvent.ACTION_UP:
@@ -141,6 +178,15 @@ public class MainUI extends RelativeLayout {
         return super.dispatchTouchEvent(ev);
     }
 
+    //滚动监听方法，通过滑动距离和控件宽度的比例来设置主布局的透明度
+    @Override
+    public void scrollTo(int x, int y) {
+        super.scrollTo(x, y);
+        int curX = Math.abs(getScrollX());
+        float scale = curX / (float) leftMenu.getMeasuredWidth();
+        midlMask.setAlpha(scale);
+    }
+
     //通过invalidate操纵，此方法通过draw方法调用。配合mScroller使用
     //重写computeScroll()方法，并在其内部完成平滑滚动的逻辑
     @Override
@@ -161,10 +207,11 @@ public class MainUI extends RelativeLayout {
             case MotionEvent.ACTION_DOWN:
                 point.x = (int) ev.getX();
                 point.y = (int) ev.getY();
+                KLog.d("ACTION_DOWN");
                 super.dispatchTouchEvent(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
-                int dx = (int) Math.abs(ev.getX() - point.x);
+                int dx = (int) Math.abs(ev.getX() - point.x);//移动结束的点的坐标减去按下的点的坐标
                 int dy = (int) Math.abs(ev.getY() - point.y);
                 if (dx >= TEST_DIS && dx > dy) {//左右滑动
                     isLeftRightEvent = true;
@@ -177,9 +224,11 @@ public class MainUI extends RelativeLayout {
                     point.x = (int) ev.getX();
                     point.y = (int) ev.getY();
                 }
+                KLog.d("ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                KLog.d("ACTION_DOWN_CANCEL");
                 super.dispatchTouchEvent(ev);
                 isLeftRightEvent = false;
                 isTestCompete = false;

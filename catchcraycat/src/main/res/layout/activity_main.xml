@@ -25,7 +25,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/colorAccent"
             android:padding="10dp"
-            android:text="自定义View布局" />
+            android:text="自定义左右抽屉效果的布局" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
