@@ -1,4 +1,4 @@
-package com.encdata.kotlin_demo;
+package com.encdata.catchcraycat;
 
 import org.junit.Test;
 
