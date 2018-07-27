@@ -1,6 +1,7 @@
 package com.encdata.catchcraycat.ui.bean;
 
 /**
+ * 游戏中x-y坐标对应的点
  * Created by zhaoyuejun on 2018/7/19.
  */
 

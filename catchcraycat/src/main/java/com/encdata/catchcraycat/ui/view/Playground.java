@@ -40,7 +40,7 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
         matrix = new Dot[ROW][COL];
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
-                matrix[i][j] = new Dot(j, i);
+                matrix[i][j] = new Dot(j, i);//x取列值，y取行值.正好相反
             }
         }
         //3.设置触摸监听=====>>>用户点击->更新游戏数据(猫选择逃生的最优的位置、用户点击的点的位置)->更新界面布局
@@ -141,6 +141,7 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
         one.setStatus(Dot.STATUS_IN);
         getDot(cat.getX(), cat.getY()).setStatus(Dot.STATUS_OFF);
         cat.setXY(one.getX(), one.getY());
+
     }
 
     /**
@@ -279,6 +280,13 @@ public class Playground extends SurfaceView implements View.OnTouchListener {
 //        justInit = true;
     }
 
+    /**
+     * 1.更新点击的游戏点的状态
+     * 2.更新猫的位置
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
