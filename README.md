@@ -8,6 +8,7 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
 
 ### Lambda表达式效果图
 >![Lambda表达式](doc/pic_lambda.png)
+<hr/>
 
 ### 阿里云热修复效果图
 
@@ -17,9 +18,11 @@ app：Rxjava+Lambda(java8)+Lombok。hotfix_android_demo：阿里云热修复测�
   <h4 align="center">在APP首页显示日志效果图</h4>
   <img src="doc/pic_hotfixapp_homeac_mix.jpg" width="700"  />
   <h4 align="center">热修复功能在资源测试界面的体现</h4>
-  <img src="doc/pic_hotfixapp_restestac_mix.jpg" width="700"  />
+  <img src="doc/pic_hotfixapp_restestac_mix.jpg" width="70%"  />
 </div>
-<h5><a href="https://github.com/yueyue10/MyApplication/blob/master/doc/hotfix_history/%E9%98%BF%E9%87%8C%E7%83%AD%E4%BF%AE%E5%A4%8D_1.0.0_%E6%B5%8B%E8%AF%95.apk?raw=true" download="阿里热修复_1.0.0_测试.apk">点击</a>获取热修复APP进行体验</h5>
+<h5 text-align="center"><a href="https://github.com/yueyue10/MyApplication/blob/master/doc/hotfix_history/%E9%98%BF%E9%87%8C%E7%83%AD%E4%BF%AE%E5%A4%8D_1.0.0_%E6%B5%8B%E8%AF%95.apk?raw=true" download="阿里热修复_1.0.0_测试.apk">点击</a>获取热修复APP进行体验</h5>
+<hr/>
+
 ### GreenDao效果图
 
 >#### 下面是数据库GreenDao的操作界面
@@ -60,4 +63,4 @@ JsonStrDaoOpe.insertData(mContext, new JsonStrData(null, getLocalStr("WuWCData.j
 
 #### 使用insertData方法，如果数据库存在对应的id值会报下面的错。使用insertOrReplaceData方法则会将id相同的数据进行更新
 ![GreenDao效果图](doc/pic_greendao_error.png)
-
+<hr/>
