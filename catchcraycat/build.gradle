@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.encdata.catchcraycat"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -24,4 +24,6 @@ dependencies {
     })
     compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
     compile 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+//    compile 'com.github.traex.calendarlistview:library:1.2.3'
 }

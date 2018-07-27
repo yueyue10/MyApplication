@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:padding="10dp"
-            android:text="CatchCrazyCat" />
+            android:text="围住神经猫" />
 
         <TextView
             android:id="@+id/customview_tv"
@@ -26,6 +26,15 @@
             android:background="@color/colorAccent"
             android:padding="10dp"
             android:text="自定义左右抽屉效果的布局" />
+
+        <TextView
+            android:id="@+id/dateview_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="自定义日历" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

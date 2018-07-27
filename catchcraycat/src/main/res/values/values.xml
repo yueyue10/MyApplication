@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/robin.chutaux/Documents/GIT-3IE/CalendarListview/library/src/main/res/values/colors.xml -->
+    <eat-comment />
+    <color name="normal_day">#ff999999</color>
+    <color name="selected_day_background">#E75F49</color>
+    <color name="selected_day_text">#fff2f2f2</color>
+    <declare-styleable name="DayPickerView">
+        <attr name="colorCurrentDay" format="color" />
+        <attr name="colorSelectedDayBackground" format="color" />
+        <attr name="colorSelectedDayText" format="color" />
+        <attr name="colorPreviousDay" format="color" />
+        <attr name="colorNormalDay" format="color" />
+        <attr name="colorMonthName" format="color" />
+        <attr name="colorDayName" format="color" />
+        <attr name="textSizeDay" format="dimension" />
+        <attr name="textSizeMonth" format="dimension" />
+        <attr name="textSizeDayName" format="dimension" />
+        <attr name="headerMonthHeight" format="dimension" />
+        <attr name="selectedDayRadius" format="dimension" />
+        <attr name="calendarHeight" format="dimension" />
+        <attr name="enablePreviousDay" format="boolean" />
+        <attr name="currentDaySelected" format="boolean" />
+        <attr name="drawRoundRect" format="boolean" />
+        <attr name="firstMonth" format="enum">
+            <enum name="january" value="0" />
+            <enum name="february" value="1" />
+            <enum name="march" value="2" />
+            <enum name="april" value="3" />
+            <enum name="may" value="4" />
+            <enum name="june" value="5" />
+            <enum name="july" value="6" />
+            <enum name="august" value="7" />
+            <enum name="september" value="8" />
+            <enum name="october" value="9" />
+            <enum name="november" value="10" />
+            <enum name="december" value="11" />
+        </attr>
+        <attr name="lastMonth" format="enum">
+            <enum name="january" value="0" />
+            <enum name="february" value="1" />
+            <enum name="march" value="2" />
+            <enum name="april" value="3" />
+            <enum name="may" value="4" />
+            <enum name="june" value="5" />
+            <enum name="july" value="6" />
+            <enum name="august" value="7" />
+            <enum name="september" value="8" />
+            <enum name="october" value="9" />
+            <enum name="november" value="10" />
+            <enum name="december" value="11" />
+        </attr>
+    </declare-styleable>
+    <!-- From: file:/C:/Users/robin.chutaux/Documents/GIT-3IE/CalendarListview/library/src/main/res/values/dimens.xml -->
+    <eat-comment />
+    <dimen name="calendar_height">270dip</dimen>
+    <dimen name="header_month_height">50dip</dimen>
+    <dimen name="selected_day_radius">16dip</dimen>
+    <dimen name="text_size_day">16sp</dimen>
+    <dimen name="text_size_day_name">10sp</dimen>
+    <dimen name="text_size_month">16sp</dimen>
+    <!-- From: file:/C:/Users/robin.chutaux/Documents/GIT-3IE/CalendarListview/library/src/main/res/values/strings.xml -->
+    <eat-comment />
+    <string name="sans_serif" translatable="false">sans-serif</string>
+</resources>
