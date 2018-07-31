@@ -297,6 +297,7 @@ class SimpleMonthView extends View {
             if (availableStartTime != null && (CalendarUtils.isDateOneBigger(availableStartTime, mTime) || CalendarUtils.isDateOneBigger(mTime, availableEndTime))) {
                 mMonthNumPaint.setColor(mPreviousDayColor);
                 mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+                canvas.drawLine(x - DAY_SELECTED_CIRCLE_SIZE, y, x + DAY_SELECTED_CIRCLE_SIZE, y - DAY_SELECTED_CIRCLE_SIZE ,mMonthTitlePaint);
             }
             canvas.drawText(String.format("%d", day), x, y, mMonthNumPaint);
 
