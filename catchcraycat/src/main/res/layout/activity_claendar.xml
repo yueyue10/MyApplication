@@ -1,18 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="日"
+            android:textColor="#ff6861" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="一"
+            android:textColor="#a4a4a4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="二"
+            android:textColor="#a4a4a4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="三"
+            android:textColor="#a4a4a4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="四"
+
+            android:textColor="#a4a4a4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="五"
+            android:textColor="#a4a4a4" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="六"
+            android:textColor="#ff6861" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/title_layout"
+        android:background="@android:color/darker_gray" />
 
     <com.encdata.catchcraycat.ui.view.dateview.DayPickerView
         android:id="@+id/pickerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/divider_line"
         app:colorCurrentDay="@color/colorAccent"
-        app:colorNormalDay="@color/colorPrimary"
-        app:colorPreviousDay="#666666"
-        app:drawRoundRect="true"
+        app:colorNormalDay="#333333"
+        app:colorPreviousDay="#a4a4a4"
+        app:colorSelectedDayBackground="#07b6c4"
+        app:currentDaySelected="true"
         app:enablePreviousDay="false" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/title_layout"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/bottom_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#07b6c4"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>
