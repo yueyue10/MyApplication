@@ -1,1 +1,1 @@
-include ':app', ':hotfix_android_demo', ':greendao', ':kotlin_demo', ':catchcraycat'
+include ':app', ':dagger_demo', ':kotlin_demo', ':hotfix_android_demo', ':greendao', ':catchcraycat'
