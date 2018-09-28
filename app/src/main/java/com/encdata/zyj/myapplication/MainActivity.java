@@ -1,9 +1,12 @@
 package com.encdata.zyj.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.encdata.zyj.myapplication.lambda.LambdaDemo1;
 import com.encdata.zyj.myapplication.R;
@@ -27,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         process();
 //        RxDeviceUtils.
+        Intent i_getvalue = getIntent();
+        String action = i_getvalue.getAction();
+        TextView textView=findViewById(R.id.btn_throttle);
+        //html文件在h5APP1项目里面的example的app-link.html文件中进行测试>button.html界面中测试
+        if(Intent.ACTION_VIEW.equals(action)){
+            Uri uri = i_getvalue.getData();
+            if(uri != null){
+                String name = uri.getQueryParameter("name");
+                String age= uri.getQueryParameter("age");
+                textView.setText(name);
+            }
+        }
     }
 
     private void process() {
