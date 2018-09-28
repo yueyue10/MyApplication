@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/option_normal_0"
+        android:title="选择样式"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/option_normal_1"
+        android:icon="@mipmap/ic_launcher"
+        android:title="BezierRadarHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_2"
+        android:title="PhoenixHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_3"
+        android:title="TaurusHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_4"
+        android:title="DeliveryHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_5"
+        android:title="DropboxHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_6"
+        android:title="BezierCircleHeader样式"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/option_normal_7"
+        android:title="FlyRefreshHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_8"
+        android:title="FunGameBattleCityHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_9"
+        android:title="FunGameHitBlockHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_10"
+        android:title="WaveSwipeHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_11"
+        android:title="MaterialHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_12"
+        android:title="StoreHouseHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_13"
+        android:title="WaterDropHeader样式"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/option_normal_14"
+        android:title="LottieHeader样式"
+        app:showAsAction="never" />
+</menu>
