@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="error_tips">暂无网络</string>
+    <string name="reload">重新加载</string>
+    <string name="http_error">网络异常</string>
+    <string name="unKnown_error">未知错误</string>
+    <string name="failed_to_cast_mode">\"切换模式失败ヽ(≧Д≦)ノ\"</string>
+    <string name="double_click_exit_tint">再按一次后退键退出GeeksAndroid</string>
+</resources>
