@@ -8,6 +8,7 @@ import com.encdata.mvp.component.ActivityCollector;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.DaggerAppCompatActivity;
+import me.yokeyword.fragmentation.SupportActivity;
 
 
 /**
@@ -17,7 +18,7 @@ import dagger.android.support.DaggerAppCompatActivity;
  * @date 2017/11/28
  */
 
-public abstract class AbstractSimpleActivity extends DaggerAppCompatActivity {
+public abstract class AbstractSimpleActivity extends SupportActivity {
 
     private Unbinder unBinder;
     protected AbstractSimpleActivity mActivity;

@@ -20,8 +20,7 @@ import dagger.android.support.AndroidSupportInjection;
  * @date 2017/11/28
  */
 
-public abstract class BaseFragment<T extends AbstractPresenter> extends AbstractSimpleFragment
-        implements AbstractView {
+public abstract class BaseFragment<T extends AbstractPresenter> extends AbstractSimpleFragment implements AbstractView {
 
     @Inject
     protected T mPresenter;

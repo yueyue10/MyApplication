@@ -3,6 +3,9 @@ package com.encdata.mvp.core.http.api;
 
 import com.encdata.mvp.core.bean.BaseResponse;
 import com.encdata.mvp.core.bean.FeedArticleListData;
+import com.encdata.mvp.ui.article.bean.BannerData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -41,61 +44,12 @@ public interface GeeksApis {
     Observable<BaseResponse<FeedArticleListData>> getSearchList(@Path("page") int page, @Field("k") String k);
 
     /**
-     * 收藏站内文章
-     * http://www.wanandroid.com/lg/collect/1165/json
+     * 广告栏
+     * http://www.wanandroid.com/banner/json
      *
-     * @param id article id
-     * @return 收藏站内文章数据
+     * @return 广告栏数据
      */
-    @POST("lg/collect/{id}/json")
-    Observable<BaseResponse<FeedArticleListData>> addCollectArticle(@Path("id") int id);
-
-    /**
-     * 收藏站外文章
-     * http://www.wanandroid.com/lg/collect/add/json
-     *
-     * @param title title
-     * @param author author
-     * @param link link
-     * @return 收藏站外文章数据
-     */
-    @POST("lg/collect/add/json")
-    @FormUrlEncoded
-    Observable<BaseResponse<FeedArticleListData>> addCollectOutsideArticle(@Field("title") String title, @Field("author") String author, @Field("link") String link);
-
-
-    /**
-     * 获取收藏列表
-     * http://www.wanandroid.com/lg/collect/list/0/json
-     *
-     * @param page page number
-     * @return 收藏列表数据
-     */
-    @GET("lg/collect/list/{page}/json")
-    Observable<BaseResponse<FeedArticleListData>> getCollectList(@Path("page") int page);
-
-    /**
-     * 取消站内文章
-     * http://www.wanandroid.com/lg/uncollect_originId/2333/json
-     *
-     * @param id article id
-     * @param originId origin id
-     * @return 取消站内文章数据
-     */
-    @POST("lg/uncollect/{id}/json")
-    @FormUrlEncoded
-    Observable<BaseResponse<FeedArticleListData>> cancelCollectPageArticle(@Path("id") int id, @Field("originId") int originId);
-
-    /**
-     * 取消收藏页面站内文章
-     * http://www.wanandroid.com/lg/uncollect_originId/2333/json
-     *
-     * @param id article id
-     * @param originId origin id
-     * @return 取消收藏页面站内文章数据
-     */
-    @POST("lg/uncollect_originId/{id}/json")
-    @FormUrlEncoded
-    Observable<BaseResponse<FeedArticleListData>> cancelCollectArticle(@Path("id") int id, @Field("originId") int originId);
+    @GET("banner/json")
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
 
 }

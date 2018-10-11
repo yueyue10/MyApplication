@@ -7,6 +7,7 @@ import com.encdata.mvp.core.dao.HistoryData;
 import com.encdata.mvp.core.db.DbHelper;
 import com.encdata.mvp.core.http.HttpHelper;
 import com.encdata.mvp.core.prefs.PreferenceHelper;
+import com.encdata.mvp.ui.article.bean.BannerData;
 
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class DataManager implements HttpHelper, DbHelper, PreferenceHelper {
         return mHttpHelper.getSearchList(pageNum, k);
     }
 
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerData() {
+        return mHttpHelper.getBannerData();
+    }
 
 
     @Override

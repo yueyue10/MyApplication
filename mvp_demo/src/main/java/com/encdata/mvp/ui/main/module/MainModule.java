@@ -1,11 +1,11 @@
-package com.encdata.mvp.ui.main;
+package com.encdata.mvp.ui.main.module;
 
 
+import com.encdata.mvp.di.scope.FragmentScoped;
+import com.encdata.mvp.ui.article.fragment.ArticleFragment;
 
-import com.encdata.mvp.di.scope.ActivityScoped;
-
-import dagger.Binds;
 import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
 
 /**
  * 第一步 添加@Module 注解
@@ -15,9 +15,9 @@ import dagger.Module;
 @Module
 public abstract class MainModule {
 
-//    @FragmentScoped
-//    @ContributesAndroidInjector
-//    abstract MainFragment tasksFragment();
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract ArticleFragment ticketFragment();
 
 //    @ActivityScoped
 //    @Binds

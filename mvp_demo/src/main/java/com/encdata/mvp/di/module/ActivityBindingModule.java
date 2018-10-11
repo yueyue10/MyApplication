@@ -1,8 +1,9 @@
 package com.encdata.mvp.di.module;
 
 import com.encdata.mvp.di.scope.ActivityScoped;
-import com.encdata.mvp.ui.main.MainActivity;
-import com.encdata.mvp.ui.main.MainModule;
+import com.encdata.mvp.ui.main.activity.ArticleDetailActivity;
+import com.encdata.mvp.ui.main.activity.MainActivity;
+import com.encdata.mvp.ui.main.module.MainModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -20,5 +21,9 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity mainActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector
+    abstract ArticleDetailActivity secondActivity();
 
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#00D4C5</color>
+    <color name="colorPrimaryDark">#049486</color>
+    <color name="colorPrimaryOverlay">#00abff</color>
+    <color name="colorBackground">#EEEEEE</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="title_bar">#00D4C5</color>
 
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
@@ -10,4 +13,14 @@
     <color name="setting_text">#5b5d5c</color>
     <color name="tab_bac">#049486</color>
     <color name="light_tab_bac">#45c1b5</color>
+    <color name="black">#333333</color>
+    <color name="title_black">#222222</color>
+    <color name="light_deep_red">#f9382a</color>
+    <color name="light_red">#e26d2e</color>
+    <color name="light_green">#3fc75f</color>
+    <color name="card_color">#202124</color>
+    <color name="card_bac">#f7f3f3</color>
+    <color name="deep_red">#dc3b1f</color>
+    <color name="colorCard">#FFFFFF</color>
+    <color name="comment_text">#5b5d5c</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.encdata.mvp.ui.main;
+package com.encdata.mvp.ui.main.presenter;
 
 import com.encdata.mvp.R;
 import com.encdata.mvp.app.MyApplication;

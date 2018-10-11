@@ -3,6 +3,9 @@ package com.encdata.mvp.core.http;
 import com.encdata.mvp.core.bean.BaseResponse;
 import com.encdata.mvp.core.bean.FeedArticleListData;
 import com.encdata.mvp.core.http.api.GeeksApis;
+import com.encdata.mvp.ui.article.bean.BannerData;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,4 +38,8 @@ public class HttpHelperImpl implements HttpHelper {
         return mGeeksApis.getSearchList(pageNum, k);
     }
 
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerData() {
+        return mGeeksApis.getBannerData();
+    }
 }

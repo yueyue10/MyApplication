@@ -1,9 +1,23 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">MVP实例</string>
     <string name="error_tips">暂无网络</string>
+    <string name="web_error_tips">加载失败</string>
     <string name="reload">重新加载</string>
     <string name="http_error">网络异常</string>
     <string name="unKnown_error">未知错误</string>
     <string name="failed_to_cast_mode">\"切换模式失败ヽ(≧Д≦)ノ\"</string>
     <string name="double_click_exit_tint">再按一次后退键退出GeeksAndroid</string>
+
+    <string name="home_title">首页</string>
+    <string name="failed_to_obtain_article_list">获取文章列表数据失败</string>
+    <string name="failed_to_obtain_banner_data">获取广告数据失败</string>
+    <string name="share_view">shareView</string>
+    <string name="open_project">开源项目</string>
+    <string name="project">项目</string>
+    <string name="navigation">导航</string>
+
+    <string name="minute">分钟</string>
+    <string name="hour">小时</string>
+    <string name="one_day">1天</string>
+    <string name="text_new">新</string>
 </resources>
