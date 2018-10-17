@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.encdata.mvp.R;
@@ -15,6 +17,7 @@ import com.encdata.mvp.mvp.contract.MainContract;
 import com.encdata.mvp.mvp.fragment.BaseFragment;
 import com.encdata.mvp.ui.main.presenter.MainPresenter;
 import com.encdata.mvp.ui.article.fragment.ArticleFragment;
+import com.encdata.mvp.ui.ticket.fragment.TicketFragment;
 import com.encdata.mvp.utils.StatusBarUtil;
 import com.jpeng.jptabbar.JPTabBar;
 import com.jpeng.jptabbar.OnTabSelectListener;
@@ -32,10 +35,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     Toolbar mToolbar;
     @BindView(R.id.common_toolbar_title_tv)
     TextView mTitleTv;
+    @BindView(R.id.fragment_group)
+    FrameLayout fragment_group;
     @BindView(R.id.tabbar)
     JPTabBar tabbar;
     private ArrayList<BaseFragment> mFragments;
-    private ArticleFragment articleFragment1;
+    private TicketFragment ticketFragment;
     private ArticleFragment articleFragment2;
     private ArticleFragment articleFragment3;
     private int mLastFgIndex;
@@ -56,14 +61,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initToolbar() {
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayShowTitleEnabled(false);
-        StatusBarUtil.setPaddingSmart(this, mToolbar);
-        mTitleTv.setText(getString(R.string.home_title));
-        mToolbar.setNavigationIcon(null);
-        //StatusBarUtil.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.title_bar), 1f);
+//        setSupportActionBar(mToolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        assert actionBar != null;
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        StatusBarUtil.setPaddingSmart(this, fragment_group);
+//        mTitleTv.setText(getString(R.string.home_title));
+//        mToolbar.setNavigationIcon(null);
+        StatusBarUtil.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.title_bar), 1f);
     }
 
     @Override
@@ -99,10 +104,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initPager(boolean isRecreate, int position) {
-        articleFragment1 = ArticleFragment.getInstance(isRecreate, null);
+        ticketFragment= new TicketFragment();
         articleFragment2 = ArticleFragment.getInstance(isRecreate, null);
         articleFragment3 = ArticleFragment.getInstance(isRecreate, null);
-        mFragments.add(articleFragment1);
+        mFragments.add(ticketFragment);
         mFragments.add(articleFragment2);
         mFragments.add(articleFragment3);
         init();

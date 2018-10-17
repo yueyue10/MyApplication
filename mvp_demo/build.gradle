@@ -99,6 +99,8 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.1.0'
     //
     compile 'com.just.agentweb:agentweb:4.0.2'
+    //
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 }
 //解决支持库版本不兼容问题
 configurations.all {

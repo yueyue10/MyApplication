@@ -3,6 +3,7 @@ package com.encdata.mvp.core;
 
 import com.encdata.mvp.core.bean.BaseResponse;
 import com.encdata.mvp.core.bean.FeedArticleListData;
+import com.encdata.mvp.core.bean.WorkBusListData;
 import com.encdata.mvp.core.dao.HistoryData;
 import com.encdata.mvp.core.db.DbHelper;
 import com.encdata.mvp.core.http.HttpHelper;
@@ -36,6 +37,11 @@ public class DataManager implements HttpHelper, DbHelper, PreferenceHelper {
     }
 
     @Override
+    public Observable<BaseResponse<WorkBusListData>> getWorkBusList(int pageNum) {
+        return mHttpHelper.getWorkBusList(pageNum);
+    }
+
+    @Override
     public Observable<BaseResponse<FeedArticleListData>> getSearchList(int pageNum, String k) {
         return mHttpHelper.getSearchList(pageNum, k);
     }
@@ -45,6 +51,10 @@ public class DataManager implements HttpHelper, DbHelper, PreferenceHelper {
         return mHttpHelper.getBannerData();
     }
 
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerDatas() {
+        return mHttpHelper.getBannerDatas();
+    }
 
     @Override
     public void setLoginAccount(String account) {

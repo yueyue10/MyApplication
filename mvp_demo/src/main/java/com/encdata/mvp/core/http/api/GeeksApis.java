@@ -3,6 +3,7 @@ package com.encdata.mvp.core.http.api;
 
 import com.encdata.mvp.core.bean.BaseResponse;
 import com.encdata.mvp.core.bean.FeedArticleListData;
+import com.encdata.mvp.core.bean.WorkBusListData;
 import com.encdata.mvp.ui.article.bean.BannerData;
 
 import java.util.List;
@@ -21,7 +22,8 @@ import retrofit2.http.Path;
 
 public interface GeeksApis {
 
-    String HOST = "http://www.wanandroid.com/";
+//        String HOST = "http://www.wanandroid.com/";
+    String HOST = "http://www.wanandroid.com/tools/mockapi/5708/";
 
     /**
      * 获取feed文章列表
@@ -31,6 +33,15 @@ public interface GeeksApis {
      */
     @GET("article/list/{num}/json")
     Observable<BaseResponse<FeedArticleListData>> getFeedArticleList(@Path("num") int num);
+
+    /**
+     * 获取上下班列表
+     *
+     * @param num 页数
+     * @return 上下班
+     */
+    @GET("getWorkBus")
+    Observable<BaseResponse<WorkBusListData>> getWorkBusList();
 
     /**
      * 搜索
@@ -52,4 +63,11 @@ public interface GeeksApis {
     @GET("banner/json")
     Observable<BaseResponse<List<BannerData>>> getBannerData();
 
+    /**
+     * 广告栏
+     *
+     * @return 广告栏数据
+     */
+    @GET("getBannerData")
+    Observable<BaseResponse<List<BannerData>>> getBannerDatas();
 }

@@ -93,14 +93,6 @@ public class ArticleDetailActivity extends BaseRootActivity<ArticleDetailPresent
     }
 
     @Override
-    public void onBackPressedSupport() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            pop();
-        } else {
-            supportFinishAfterTransition();
-        }
-    }
-    @Override
     protected void onPause() {
         mAgentWeb.getWebLifeCycle().onPause();
         super.onPause();
@@ -111,6 +103,7 @@ public class ArticleDetailActivity extends BaseRootActivity<ArticleDetailPresent
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
     }
+
     @Override
     public void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();

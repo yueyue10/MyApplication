@@ -2,6 +2,7 @@ package com.encdata.mvp.core.http;
 
 import com.encdata.mvp.core.bean.BaseResponse;
 import com.encdata.mvp.core.bean.FeedArticleListData;
+import com.encdata.mvp.core.bean.WorkBusListData;
 import com.encdata.mvp.core.http.api.GeeksApis;
 import com.encdata.mvp.ui.article.bean.BannerData;
 
@@ -34,6 +35,11 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
+    public Observable<BaseResponse<WorkBusListData>> getWorkBusList(int pageNum) {
+        return mGeeksApis.getWorkBusList();
+    }
+
+    @Override
     public Observable<BaseResponse<FeedArticleListData>> getSearchList(int pageNum, String k) {
         return mGeeksApis.getSearchList(pageNum, k);
     }
@@ -41,5 +47,10 @@ public class HttpHelperImpl implements HttpHelper {
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mGeeksApis.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerDatas() {
+        return mGeeksApis.getBannerDatas();
     }
 }

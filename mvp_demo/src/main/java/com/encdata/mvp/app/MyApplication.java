@@ -11,7 +11,6 @@ import com.encdata.mvp.BuildConfig;
 import com.encdata.mvp.R;
 import com.encdata.mvp.core.dao.DaoMaster;
 import com.encdata.mvp.core.dao.DaoSession;
-import com.encdata.mvp.di.component.AppComponent;
 import com.encdata.mvp.di.component.DaggerAppComponent;
 import com.encdata.mvp.utils.CommonUtils;
 import com.encdata.mvp.utils.logger.TxtFormatStrategy;

@@ -90,6 +90,7 @@ public class Constants {
     public static final String BANNER_DATA = "banner_data";
 
     public static final String ARTICLE_DATA = "article_data";
+    public static final String WORK_BUS_DATA = "work_bus_data";
 
     /**
      * Refresh theme color

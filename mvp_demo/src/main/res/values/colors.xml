@@ -12,6 +12,7 @@
     <color name="light_white">#f4f0f0</color>
     <color name="setting_text">#5b5d5c</color>
     <color name="tab_bac">#049486</color>
+    <color name="half_translate">#33000000</color>
     <color name="light_tab_bac">#45c1b5</color>
     <color name="black">#333333</color>
     <color name="title_black">#222222</color>
@@ -23,4 +24,6 @@
     <color name="deep_red">#dc3b1f</color>
     <color name="colorCard">#FFFFFF</color>
     <color name="comment_text">#5b5d5c</color>
+    <color name="grey">#cccccc</color>
+    <color name="comment_line">#dddddd</color>
 </resources>

@@ -13,6 +13,8 @@
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
         app:titleTextAppearance="@style/Toolbar.TitleText" />
 
+
+
     <FrameLayout
         android:id="@+id/article_detail_web_view"
         android:layout_width="match_parent"
