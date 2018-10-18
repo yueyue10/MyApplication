@@ -1,27 +1,15 @@
 package com.encdata.mvp.ui.ticket.workbus;
 
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
-import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.encdata.mvp.R;
-import com.encdata.mvp.core.bean.FeedArticleData;
 import com.encdata.mvp.core.bean.WorkBusData;
-import com.encdata.mvp.ui.article.adapter.ArticleViewHolder;
 
 import java.util.List;
 

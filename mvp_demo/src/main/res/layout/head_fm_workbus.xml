@@ -7,7 +7,7 @@
     <com.youth.banner.Banner
         android:id="@+id/work_bus_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200" />
+        android:layout_height="@dimen/dp_150" />
 
     <RelativeLayout
         android:layout_width="match_parent"

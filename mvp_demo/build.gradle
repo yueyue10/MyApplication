@@ -101,6 +101,8 @@ dependencies {
     compile 'com.just.agentweb:agentweb:4.0.2'
     //
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //
+//    implementation 'me.jessyan:retrofit-url-manager:1.4.0'
 }
 //解决支持库版本不兼容问题
 configurations.all {

@@ -22,8 +22,8 @@ import retrofit2.http.Path;
 
 public interface GeeksApis {
 
-//        String HOST = "http://www.wanandroid.com/";
-    String HOST = "http://www.wanandroid.com/tools/mockapi/5708/";
+    String HOST = "http://www.wanandroid.com/";
+//    String HOST = "http://www.wanandroid.com/tools/mockapi/5708/";
 
     /**
      * 获取feed文章列表
@@ -40,7 +40,7 @@ public interface GeeksApis {
      * @param num 页数
      * @return 上下班
      */
-    @GET("getWorkBus")
+    @GET("tools/mockapi/5708/getWorkBus")
     Observable<BaseResponse<WorkBusListData>> getWorkBusList();
 
     /**
@@ -68,6 +68,6 @@ public interface GeeksApis {
      *
      * @return 广告栏数据
      */
-    @GET("getBannerData")
+    @GET("tools/mockapi/5708/getBannerData")
     Observable<BaseResponse<List<BannerData>>> getBannerDatas();
 }

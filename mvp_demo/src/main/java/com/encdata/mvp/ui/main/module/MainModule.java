@@ -4,6 +4,7 @@ package com.encdata.mvp.ui.main.module;
 import com.encdata.mvp.di.scope.FragmentScoped;
 import com.encdata.mvp.ui.article.fragment.ArticleFragment;
 import com.encdata.mvp.ui.ticket.fragment.TicketFragment;
+import com.encdata.mvp.ui.ticket.storebus.StoreBusFragment;
 import com.encdata.mvp.ui.ticket.workbus.WorkBusFragment;
 
 import dagger.Module;
@@ -28,6 +29,10 @@ public abstract class MainModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract WorkBusFragment workBusFragment();
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract StoreBusFragment storeBusFragment();
 
 //    @ActivityScoped
 //    @Binds

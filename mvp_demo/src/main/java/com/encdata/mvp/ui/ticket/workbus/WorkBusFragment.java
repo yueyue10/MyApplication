@@ -37,7 +37,7 @@ import butterknife.BindView;
 
 public class WorkBusFragment extends BaseRootFragment<WorkBusPresenter> implements WorkBusContract.View {
 
-    @BindView(R.id.smart_refresh_layout)
+    @BindView(R.id.normal_view)
     SmartRefreshLayout mRefreshLayout;
     Banner work_bus_banner;
     @BindView(R.id.work_bus_recycler_view)
@@ -66,6 +66,11 @@ public class WorkBusFragment extends BaseRootFragment<WorkBusPresenter> implemen
         if (CommonUtils.isNetworkConnected()) {
             showLoading();
         }
+    }
+
+    @Override
+    public void showError() {
+        super.showError();
     }
 
     private void initRecyclerView() {
@@ -147,9 +152,7 @@ public class WorkBusFragment extends BaseRootFragment<WorkBusPresenter> implemen
 
     @Override
     public void reload() {
-        if (mRefreshLayout != null && mPresenter != null
-                && work_bus_recycler_view.getVisibility() == View.INVISIBLE
-                && CommonUtils.isNetworkConnected()) {
+        if (mRefreshLayout != null && mPresenter != null && CommonUtils.isNetworkConnected()) {
             mRefreshLayout.autoRefresh();
         }
     }

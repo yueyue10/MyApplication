@@ -61,7 +61,6 @@ public class WorkBusPresenter extends BasePresenter<WorkBusContract.View> implem
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mView.showErrorMsg(e.getLocalizedMessage());
                     }
                 }));
     }

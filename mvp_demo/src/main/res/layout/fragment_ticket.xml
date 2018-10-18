@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_54"
-        android:background="@drawable/blue_gradient_bg">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:text="北京市"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_15" />
-
-        <TextView
-            android:id="@+id/common_toolbar_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:singleLine="true"
-            android:text="开发环境"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_16"
-            tools:text="开发环境" />
-    </RelativeLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/normal_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/ticket_tab_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_48"
-            android:background="@color/title_bar"
-            android:paddingLeft="@dimen/dp_5"
-            android:paddingRight="@dimen/dp_5"
-            android:visibility="invisible"
-            app:tl_indicator_color="@color/half_translate"
-            app:tl_indicator_corner_radius="@dimen/dp_100"
-            app:tl_indicator_margin_left="@dimen/dp_5"
-            app:tl_indicator_margin_right="@dimen/dp_5"
-            app:tl_indicator_style="BLOCK"
-            app:tl_textSelectColor="@color/white"
-            app:tl_textUnselectColor="@color/white" />
+            android:layout_height="@dimen/dp_54"
+            android:background="@drawable/blue_gradient_bg">
 
-        <View
-            android:id="@+id/ticket_divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_0"
-            android:background="@color/comment_line"
-            android:visibility="invisible" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="北京市"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/ticket_viewpager"
+            <TextView
+                android:id="@+id/common_toolbar_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:singleLine="true"
+                android:text="开发环境"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                tools:text="开发环境" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/normal_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/ticket_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:background="@color/title_bar"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:visibility="invisible"
+                app:tl_indicator_color="@color/half_translate"
+                app:tl_indicator_corner_radius="@dimen/dp_100"
+                app:tl_indicator_margin_left="@dimen/dp_5"
+                app:tl_indicator_margin_right="@dimen/dp_5"
+                app:tl_indicator_style="BLOCK"
+                app:tl_textSelectColor="@color/white"
+                app:tl_textUnselectColor="@color/white" />
+
+            <View
+                android:id="@+id/ticket_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                android:background="@color/comment_line"
+                android:visibility="invisible" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/ticket_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+        </LinearLayout>
+
     </LinearLayout>
+</FrameLayout>
 
-</LinearLayout>
