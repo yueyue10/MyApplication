@@ -1,17 +1,24 @@
-个人季度总结报告
- 在过去2018的7-9月中部门发生了很多变化，包括办公环境的迁移、新加入很多同事
- 、部门结构的优化等。对于个人来说，我们也同样有了很多变化：在新来的阳总的带领下
- 工作目标更明确，各成员配合更好，效率提高。
+# mvp_demo介绍
 
- 7月初的时候，大家还在东升科技园办公。主要在做门票的相关功能，一部分人员到龙虎山进行现场联调。
-我在单位继续完善和优化演示版本APP的相关功能以及景区门票验票APP的开发，同时也协助出差同事一起
-做门票模块的一些功能。到7月中旬的时候公司办公地址迁移到摩托罗拉大厦，刚来时大厦8层很空旷部门人也很少。
-来到这边的工作主要是对新加入门票模块的bug处理和演示版本的优化，对演示版本的代码优化后期也应用到了正式版本。
+<div>
+<h2>10月11号首页效果------------------------------------10月11号下拉刷新效果</h2>
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/首页-1011.png" width="40%"  />
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/下拉刷新-1011.png" width="40%" />
+</div>
 
-到8月份以后，在新的环境下大家也适应了这里的节奏。在这个时候部门新加入了工作特别认真负责的刘滢姐，
-在2-3周的时间内部门的人员配置开始趋于规范化。这段时间的主要工作是整合项目，所有模块加入涠洲岛的功能。
-前期主要是接口的修改和联调以及功能测试和bug修改，后期主要工作是代码优化和UI界面的优化。
+<div>
+<h2>10月11号详情效果------------------------------------</h2>
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/详情-1011.png" width="40%"  />
+</div>
 
-进入9月份以后，在阳总的规划下我们开始了项目的优化。因为首页和导引页功能比较复杂，所以优先对其进行了
-MVP的优化，方便以后项目维护和修改。在9月后期项目加入了龙虎山观光车的功能，方便游客在景区内乘坐观光车和
-合理安排行程。
+<div>
+<h2>10月18号首页上下班车无网络效果------------------------------------10月18号上下班车重新加载效果</h2>
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/WorkBusFragment-NetError-1018.jpg" width="40%"  />
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/WorkBusFragment-Normal-1018.jpg" width="40%" />
+</div>
+
+<div>
+<h2>10月18号首页收藏班车无网络效果------------------------------------10月18号收藏班车重新加载效果</h2>
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/StoreBusFragment-NetError-1018.jpg" width="40%"  />
+<img src="https://raw.github.com/yueyue10/MyApplication/master/doc/mvp_demo/StoreBusFragment-Normal-1018.jpg" width="40%" />
+</div>
