@@ -31,3 +31,7 @@
 ## mvp_demo：mvp框架实例
 **dagger+rxjava+retrofit2基础的MVP框架,下拉刷新使用：SmartRefreshLayout,布局注册使用：butterknife,图片加载使用：glide,数据库使用：greendao,Log日志输出使用：logger,动画效果使用：lottie,fragment使用：fragmentation,底部tab图标使用：JPTabBar,轮播图使用：banner,列表适配器使用:BaseRecyclerViewAdapterHelper,加载webview使用：agentweb,带有动态效果的Tab标签：FlycoTabLayout_Lib**
 <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/mvp_demo" >mvp_demo功能介绍</a></h3>
+
+## sticky_header_listview：头部悬浮实例
+**头部悬浮测试**
+<h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/sticky_header_listview" >sticky_header_listview功能介绍</a></h3>

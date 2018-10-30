@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_title_height"
+    android:background="@color/xiaoguo_title2_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/app_title_normal" >
+
+        <Button
+            android:id="@+id/but_fanhui"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableLeft="@drawable/wuzhen_back"
+            android:gravity="center"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/sharebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/wuzhen_share"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/in_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@android:color/white"
+            android:textSize="19dp"
+            android:typeface="sans" />
+
+        <ImageButton
+            android:id="@+id/attention_button"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/wuzhen_attention"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/share_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/attention_button"
+            android:gravity="center"
+            android:textColor="@color/zhujiangren"
+            android:textSize="15dp"
+            android:typeface="sans"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

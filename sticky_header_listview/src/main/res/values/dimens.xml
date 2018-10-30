@@ -1,0 +1,8 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- zyj添加 -->
+    <dimen name="app_title_height">65dp</dimen>
+    <dimen name="app_title_normal">15dp</dimen>
+
+</resources>

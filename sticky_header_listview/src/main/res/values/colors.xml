@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <!-- 主界面背景颜色 -->
+    <color name="swiperefreshlayoutcolor">#4074C3</color>
+    <color name="zhujiangren">#FF6917</color>
+    <color name="vip_text_color">#686768</color>
+    <color name="xiaoguo_title2_bg">#f99730</color><!-- 0908修改 -->
+</resources>
