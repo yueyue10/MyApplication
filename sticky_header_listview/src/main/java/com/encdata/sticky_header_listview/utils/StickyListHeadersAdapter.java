@@ -1,4 +1,4 @@
-package com.encdata.sticky_header_listview.view;
+package com.encdata.sticky_header_listview.utils;
 
 import android.view.View;
 import android.view.ViewGroup;

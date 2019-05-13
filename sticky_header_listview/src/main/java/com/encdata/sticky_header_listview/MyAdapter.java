@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.encdata.sticky_header_listview.bean.DaHuiDate;
 import com.encdata.sticky_header_listview.bean.DaHuiInfo;
-import com.encdata.sticky_header_listview.view.StickyListHeadersAdapter;
+import com.encdata.sticky_header_listview.utils.StickyListHeadersAdapter;
 
 import java.util.List;
 

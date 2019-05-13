@@ -18,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.encdata.sticky_header_listview.view.StickyListHeadersListView;
+import com.encdata.sticky_header_listview.utils.StickyListHeadersListView;
 import com.encdata.sticky_header_listview.bean.Base;
 import com.encdata.sticky_header_listview.bean.DaHuiDate;
 import com.encdata.sticky_header_listview.bean.ResponseBody;

@@ -13,7 +13,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp">
 
-        <com.encdata.sticky_header_listview.view.StickyListHeadersListView
+        <com.encdata.sticky_header_listview.utils.StickyListHeadersListView
             android:id="@+id/huiyi_riqi_stickyHeaderview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

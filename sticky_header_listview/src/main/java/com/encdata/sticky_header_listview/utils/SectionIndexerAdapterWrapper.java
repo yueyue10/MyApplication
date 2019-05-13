@@ -1,4 +1,4 @@
-package com.encdata.sticky_header_listview.view;
+package com.encdata.sticky_header_listview.utils;
 
 import android.content.Context;
 import android.widget.SectionIndexer;

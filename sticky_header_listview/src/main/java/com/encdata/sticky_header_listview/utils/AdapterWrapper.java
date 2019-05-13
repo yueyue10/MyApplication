@@ -1,7 +1,4 @@
-package com.encdata.sticky_header_listview.view;
-
-import java.util.LinkedList;
-import java.util.List;
+package com.encdata.sticky_header_listview.utils;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Checkable;
 import android.widget.ListAdapter;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A {@link ListAdapter} which wraps a {@link StickyListHeadersAdapter} and
