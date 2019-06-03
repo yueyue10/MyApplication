@@ -14,4 +14,4 @@
 参考：https://blog.csdn.net/u010586151/article/details/79065447
 
 ![python_demo](https://raw.github.com/yueyue10/MyApplication/master/doc/pic_python.png)
-![python_demo](https://raw.github.com/yueyue10/MyApplication/master/pyton_project/python_demo/python_demo.png)
+![python_demo](https://raw.github.com/yueyue10/MyApplication/master/python_project/python_demo/python_demo.png)

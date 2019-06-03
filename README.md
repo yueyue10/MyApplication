@@ -15,5 +15,5 @@
 | smart_refresh         |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/smart_refresh" >SmartRefreshLayout和Lottie使用</a></h3>  |
 | mvp_demo              |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/mvp_demo" >mvp框架实例</a></h3>  |
 | sticky_header_listview|   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/sticky_header_listview" >sticky_header_listview功能介绍</a></h3>  |
-| python_demo           |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/python_demo" >python语法学习demo</a></h3>  |
+| python_demo           |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo" >python语法学习demo</a></h3>  |
 
