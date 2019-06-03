@@ -17,7 +17,7 @@ def nop():
     pass
 
 
-age = 100;
+age = 100
 if age >= 18:
     pass
 

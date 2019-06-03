@@ -8,7 +8,10 @@
 > * 2.打开AS中的Terminal命令行工具
 > *     输入命令并回车：    cd E:\Users\Github\MyApplication\python_demo\basic
 > *     输入命令并回车：    python basic_data.py
+
 > * 3.在AS的Terminal命令中就可以看到执行的结果了，效果如下图所示
+### 也可以使用Intellij IDEA打开项目运行即可
+参考：https://blog.csdn.net/u010586151/article/details/79065447
 
 ![python_demo](https://raw.github.com/yueyue10/MyApplication/master/doc/pic_python.png)
-
+![python_demo](https://raw.github.com/yueyue10/MyApplication/master/pyton_project/python_demo/python_demo.png)
