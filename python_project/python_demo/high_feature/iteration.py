@@ -14,7 +14,8 @@ for value in d.values():
 for k, v in d.items():
     print("key=%s,value=%s" % (k, v))
 
-for ch in 'ABC': print(ch)
+for ch in 'ABC':
+    print(ch)
 
 # 通过collections模块的Iterable类型判断一个对象是可迭代对象
 print ("\n", isinstance('abc', Iterable))  # str是否可迭代
@@ -36,14 +37,14 @@ def findMinAndMax(L):
     if len(L)==0:
         return None, None
     else:
-        max = L[0];
-        min = L[0];
-        print ("max=",max)
+        max = L[0]
+        min = L[0]
+        print ("max=", max)
         for l in L:
             if l>max:
                 max=l
             if l<min:
-                min=l;
+                min=l
         return max,min
 
 if findMinAndMax([]) != (None, None):
