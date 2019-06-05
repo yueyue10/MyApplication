@@ -1,3 +1,5 @@
+import functools
+
 print('''---------------------装饰器---------------------
 ''')
 
@@ -38,3 +40,38 @@ def nowTime():
 
 print("\n")
 nowTime()
+
+
+# 如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数，写出来会更复杂。比如，要自定义log的文本：
+def log(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+
+        return wrapper
+
+    return decorator
+
+
+@log('execute')
+def nowT():
+    print('2015-3-25')
+
+
+print("\n")
+nowT()
+
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+
+    return wrapper
+# 在面向对象（OOP）的设计模式中，decorator被称为装饰模式。
+# OOP的装饰模式需要通过继承和组合来实现，而Python除了能支持OOP的decorator外，
+# 直接从语法层次支持decorator。Python的decorator可以用函数实现，也可以用类实现。
+#
+# decorator可以增强函数的功能，定义起来虽然有点复杂，但使用起来非常灵活和方便。
