@@ -18,28 +18,28 @@
 ![python_demo](https://raw.github.com/yueyue10/MyApplication/master/python_project/python_demo/python_demo.png)
 
 ### 教程目录
-> * [Python基础](https://www.liaoxuefeng.com/wiki/1016959663602400/1017063413904832)
-> * [函数](https://www.liaoxuefeng.com/wiki/1016959663602400/1017105145133280)
-> * [高级特性](https://www.liaoxuefeng.com/wiki/1016959663602400/1017269809315232)
-> * [函数式编程 ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017328525009056)
-> * [模块           ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
-> * [面向对象编程       ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017495723838528)
-> * [面向对象高级编程     ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017501628721248)
-> * [错误、调试和测试     ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017598814713792)
-> * [IO编程         ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017606916795776)
-> * [进程和线程        ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376)
-> * [正则表达式        ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664)
-> * [常用内建模块       ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017642838127488)
-> * [常用第三方模块      ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017785364772448)
-> * [virtualen    ](https://www.liaoxuefeng.com/wiki/1016959663602400/1019273143120480)
-> * [图形界面         ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017786914566560)
-> * [网络编程         ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017787560490144)
-> * [电子邮件         ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017790556023936)
-> * [访问数据库        ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017801397501728)
-> * [Web开发        ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017804650182592)
-> * [异步IO         ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017959540289152)
-> * [实战           ](https://www.liaoxuefeng.com/wiki/1016959663602400/1018138095494592)
-> * [FAQ          ](https://www.liaoxuefeng.com/wiki/1016959663602400/1019418790329088)
+> * [Python基础](https://www.liaoxuefeng.com/wiki/1016959663602400/1017063413904832) [-basic][1]
+> * [函数](https://www.liaoxuefeng.com/wiki/1016959663602400/1017105145133280) [-method][2]
+> * [高级特性](https://www.liaoxuefeng.com/wiki/1016959663602400/1017269809315232) [-high_feature][3]
+> * [函数式编程 ](https://www.liaoxuefeng.com/wiki/1016959663602400/1017328525009056) [-func_program][4]
+> * [模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145014176)
+> * [面向对象编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017495723838528) [-oop_program][5]
+> * [面向对象高级编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017501628721248) [-high_oop_program][6]
+> * [错误、调试和测试](https://www.liaoxuefeng.com/wiki/1016959663602400/1017598814713792) [-error_debug_test][7]
+> * [IO编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017606916795776) [-io_program][8]
+> * [进程和线程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017627212385376) [-process_thread][9]
+> * [正则表达式](https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664)
+> * [常用内建模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017642838127488) [-com_build_in_module][10]
+> * [常用第三方模块](https://www.liaoxuefeng.com/wiki/1016959663602400/1017785364772448) [-com_third_party_mods][11]
+> * [virtualen](https://www.liaoxuefeng.com/wiki/1016959663602400/1019273143120480)
+> * [图形界面](https://www.liaoxuefeng.com/wiki/1016959663602400/1017786914566560) [-gui][12]
+> * [网络编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017787560490144) [-winsock][13]
+> * [电子邮件](https://www.liaoxuefeng.com/wiki/1016959663602400/1017790556023936)
+> * [访问数据库](https://www.liaoxuefeng.com/wiki/1016959663602400/1017801397501728)
+> * [Web开发](https://www.liaoxuefeng.com/wiki/1016959663602400/1017804650182592)
+> * [异步IO](https://www.liaoxuefeng.com/wiki/1016959663602400/1017959540289152)
+> * [实战](https://www.liaoxuefeng.com/wiki/1016959663602400/1018138095494592)
+> * [FAQ](https://www.liaoxuefeng.com/wiki/1016959663602400/1019418790329088)
 
 ### 项目结构
 (和教程目录相比缺少的内容是：电子邮件、访问数据库、Web开发、异步IO)
@@ -129,3 +129,18 @@
         |-- udp_program.py [UDP编程]
         |-- udp_program1.py
 ```
+
+
+  [1]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/basic "basic"
+  [2]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/method
+  [3]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/high_feature
+  [4]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/func_program
+  [5]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/oop_program
+  [6]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/high_oop_program
+  [7]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/error_debug_test
+  [8]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/io_program
+  [9]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/process_thread
+  [10]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/com_build_in_module
+  [11]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/com_third_party_mods
+  [12]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/gui
+  [13]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/winsock
