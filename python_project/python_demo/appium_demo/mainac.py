@@ -1,17 +1,16 @@
 from selenium.webdriver.common.by import By
 
 from appium_demo.element_helper import waitTime, AppElement
-from appium_demo.modules import LoginActivity, VenueListActivity, WebViewActivity
+from appium_demo.modules import LoginActivity, VenueListActivity, WebViewActivity, NewsListActivity
 
 
 class MainActivity(AppElement):
-    def __init__(self, driver):
-        AppElement.__init__(self, driver=driver)
+    def __init__(self):
         print("________主页界面测试________")
         self.driver.wait_activity(".module.main.MainActivity", 10)
 
     def homeTest(self, vp_test=True, grid_test=True):
-        home_fragment = HomeFragment(self.driver)
+        home_fragment = HomeFragment()
         if vp_test: home_fragment.viewPagerTest()
         if grid_test: home_fragment.gridClick()
 
@@ -22,14 +21,14 @@ class MainActivity(AppElement):
         user_name_tv = self.findElementId('user_name_tv').text
         if user_name_tv == '未登录':
             self.findElementId('user_icon_iv').click()
-            loginactivity = LoginActivity(self.driver)
+            loginactivity = LoginActivity()
+            loginactivity.finish()
         else:
             pass
 
 
 class HomeFragment(AppElement):
-    def __init__(self, driver):
-        AppElement.__init__(self, driver=driver)
+    def __init__(self):
         print("_______App首页UI测试_______")
 
     def viewPagerTest(self):
@@ -37,7 +36,7 @@ class HomeFragment(AppElement):
         if viewPager:
             self.swipeLeft(element=viewPager, n=3)
             viewPager.click()
-            webviewactivity = WebViewActivity(self.driver)
+            webviewactivity = WebViewActivity()
         waitTime(1)
 
     def gridClick(self):
@@ -47,8 +46,11 @@ class HomeFragment(AppElement):
         waitTime(1)
         # 场馆介绍点击
         module_rv.find_elements(by=By.CLASS_NAME, value="android.widget.LinearLayout")[1].click()
-        venuelistactivity = VenueListActivity(self.driver)
+        venuelistactivity = VenueListActivity()
         waitTime(1)
         # 活动资讯点击
-
+        module_rv.find_elements(by=By.CLASS_NAME, value="android.widget.LinearLayout")[2].click()
+        newslistactivity = NewsListActivity()
+        waitTime(1)
         # 建议反馈点击
+        module_rv.find_elements(by=By.CLASS_NAME, value="android.widget.LinearLayout")[3].click()

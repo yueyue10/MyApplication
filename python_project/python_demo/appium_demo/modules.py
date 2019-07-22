@@ -1,18 +1,24 @@
-from appium_demo import Config
+from selenium.webdriver.common.by import By
+
+from appium_demo import AppConfig
 from appium_demo.element_helper import AppElement, TitleLayout, waitTime
 
 
 class Activity(AppElement):
-    def __init__(self, driver):
-        AppElement.__init__(self, driver=driver)
-        self.title = TitleLayout(self.driver)
+    def __init__(self, class_name):
+        self.title = TitleLayout()
+        print("%s%s__%s%s" % ("________", class_name, self.title.getTitle(), "________"))
+
+    def finish(self):
+        self.title.finish()
 
 
 class LoginActivity(Activity):
-    def __init__(self, driver):
-        Activity.__init__(self, driver=driver)
-        print("________登录界面测试________")
-        self.getYzm(Config.phone_num)
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
+
+    def login(self):
+        self.getYzm(AppConfig.phone_num)
         self.loginByYzm()
 
     def getYzm(self, phone_num):
@@ -28,9 +34,8 @@ class LoginActivity(Activity):
 
 
 class VenueListActivity(Activity):
-    def __init__(self, driver):
-        Activity.__init__(self, driver=driver)
-        print("________场馆介绍测试________")
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
         self.scrollTest()
         self.toDetail()
 
@@ -41,14 +46,13 @@ class VenueListActivity(Activity):
     def toDetail(self):
         tv_to_detail = self.findElementId("tv_to_detail")
         tv_to_detail.click()
-        detail = VenueDetailActivity(self.driver)
+        detail = VenueDetailActivity()
         self.title.finish()
 
 
 class VenueDetailActivity(Activity):
-    def __init__(self, driver):
-        Activity.__init__(self, driver=driver)
-        print("________场馆详情测试________")
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
         self.shareTest()
         self.findElementId("cancel_tv").click()
         self.title.finish()
@@ -58,20 +62,49 @@ class VenueDetailActivity(Activity):
 
 
 class NewsListActivity(Activity):
-    def __init__(self, driver):
-        Activity.__init__(self, driver=driver)
-        print("________活动资讯测试________")
-        # todo
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
+        self.driver.wait_activity(".module.news.NewsListActivity", 5)
+        try:
+            self.recyclerView = self.findElementId("recyclerView")
+            self.itemViews = self.recyclerView.find_elements(by=By.CLASS_NAME, value="android.widget.LinearLayout")
+            waitTime(1)
+            self.voteTest(0)
+            waitTime(1)
+            self.itemClickTest(0)
+        except Exception as e:
+            print(e)
+
+    def voteTest(self, item_position):
+        self.itemViews[item_position].find_element(by=By.ID, value='likes_layout').click()
+        waitTime(1)
+        tv_title = self.findElementId("tv_title").text
+        if tv_title == '登录':
+            loginactivity = LoginActivity()
+            loginactivity.finish()
+
+    def itemClickTest(self, item_position):
+        self.itemViews[item_position].click()
+        newsdetailactivity = NewsDetailActivity()
+        newsdetailactivity.swipeUp(n=3)
+        newsdetailactivity.finish()
+
+    def scrollTest(self):
+        self.swipeUp(n=5)
+
+
+class NewsDetailActivity(Activity):
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
 
 
 class WebViewActivity(Activity):
-    def __init__(self, driver):
-        Activity.__init__(self, driver=driver)
-        print("________WebView详情页面测试________")
+    def __init__(self):
+        Activity.__init__(self, self.__class__.__name__)
         self.driver.wait_activity(".module.mine.web.WebViewActivity", 5)
         self.scrollTest()
 
     def scrollTest(self):
-        title = TitleLayout(self.driver)
+        title = TitleLayout()
         self.swipeUp(n=5)
         title.finish()

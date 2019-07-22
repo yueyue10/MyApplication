@@ -1,27 +1,25 @@
 import time
 
+from appium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
-from appium_demo import Config
+from appium_demo import AppConfig
 
 
 class AppElement:
-
-    def __init__(self, driver):
-        self.driver = driver
+    driver = webdriver
 
     def findElementId(self, element_id, timeout=3):
         try:
             wait = WebDriverWait(self.driver, timeout)
             # element = wait.until(expected_conditions.visibility_of(By.ID, element_id))
             # 使用匿名函数
-            element_id = Config.element_path + element_id
+            element_id = AppConfig.element_path + element_id
             element = wait.until(lambda diver: self.driver.find_element_by_id(element_id))
             print("element.resourceId", element.get_attribute("resourceId"))
             return element
         except:
             print("element can't find")
-            return ""
 
     def swipeUp(self, t=500, n=1):
         '''向上滑动屏幕'''
@@ -93,19 +91,17 @@ class AppElement:
 
 class TitleLayout(AppElement):
 
-    def __init__(self, driver):
-        AppElement.__init__(self, driver)
+    def __init__(self):
         self.title = self.findElementId('tv_title')
         self.back = self.findElementId('iv_left')
         self.iv_right = self.findElementId('iv_right')
-        self.getTitle()
 
     def finish(self):
         waitTime(1.5)
         if self.back: self.back.click()
 
     def getTitle(self):
-        if self.title: print(self.title.text)
+        if self.title: return self.title.text
 
     def rightClick(self):
         if self.iv_right: self.iv_right.click()

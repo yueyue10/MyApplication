@@ -18,7 +18,8 @@ desired_caps = {
 }
 
 
-class Config:
+class AppConfig:
     element_path = "com.ennova.dreamlf:id/"
     phone_num = "18810126510"
     service_path = 'http://127.0.0.1:4723/wd/hub'
+
