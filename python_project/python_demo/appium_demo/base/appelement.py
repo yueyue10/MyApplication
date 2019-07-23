@@ -23,15 +23,15 @@ class AppElement:
 
     def swipeUp(self, t=500, n=1):
         '''向上滑动屏幕'''
-        print(">>滑动开始")
+        print("......滑动开始......")
         l = self.driver.get_window_size()
         x1 = l['width'] * 0.5  # x坐标
         y1 = l['height'] * 0.75  # 起始y坐标
         y2 = l['height'] * 0.25  # 终点y坐标
         for i in range(n):
             self.driver.swipe(x1, y1, x1, y2, t)
-            waitTime(0.5)
-        print("滑动结束<<")
+            self.waitTime(0.5)
+        print("......滑动结束......")
 
     def swipeDown(self, t=500, n=1):
         '''向下滑动屏幕'''
@@ -50,7 +50,7 @@ class AppElement:
         x2 = l['width'] * 0.25
         for i in range(n):
             self.driver.swipe(x1, y1, x2, y1, t)
-            waitTime(0.5)
+            self.waitTime(0.5)
 
     def swipeLeft(self, element, t=500, n=1):
         x1 = element.size['width'] * 0.85
@@ -58,7 +58,7 @@ class AppElement:
         x2 = element.size['width'] * 0.25
         for i in range(n):
             self.driver.swipe(x1, y1, x2, y1, t)
-            waitTime(0.5)
+            self.waitTime(0.5)
 
     def swipeRight(self, t=500, n=1):
         '''向右滑动屏幕'''
@@ -88,24 +88,5 @@ class AppElement:
         print(self.driver.find_element_by_id("com.ennova.dreamlf:id/title_tv").size)
         print(self.driver.find_element_by_id("com.ennova.dreamlf:id/title_tv").location)
 
-
-class TitleLayout(AppElement):
-
-    def __init__(self):
-        self.title = self.findElementId('tv_title')
-        self.back = self.findElementId('iv_left')
-        self.iv_right = self.findElementId('iv_right')
-
-    def finish(self):
-        waitTime(1.5)
-        if self.back: self.back.click()
-
-    def getTitle(self):
-        if self.title: return self.title.text
-
-    def rightClick(self):
-        if self.iv_right: self.iv_right.click()
-
-
-def waitTime(time_span):
-    time.sleep(time_span)
+    def waitTime(self, time_span):
+        time.sleep(time_span)

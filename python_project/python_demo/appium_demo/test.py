@@ -3,8 +3,8 @@ import os
 from appium import webdriver
 
 from appium_demo import AppConfig, desired_caps
-from appium_demo.element_helper import AppElement
-from appium_demo.mainac import MainActivity
+from appium_demo.base.appelement import AppElement
+from appium_demo.module.mainac import MainActivity
 
 
 class App(AppElement):
@@ -17,7 +17,7 @@ class App(AppElement):
     def test(self):
         mainAc = MainActivity()
         mainAc.homeTest(vp_test=False, grid_test=True)
-        mainAc.mineTest()
+        # mainAc.mineTest()
 
 
 if __name__ == "__main__":
