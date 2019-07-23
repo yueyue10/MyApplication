@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 
 from appium_demo.base.appelement import AppElement
+from appium_demo.module import activity_list
+from appium_demo.module.feedbackac import FeedbackActivity
 from appium_demo.module.loginac import LoginActivity
 from appium_demo.module.newslistac import NewsListActivity
 from appium_demo.module.venuelistac import VenueListActivity
@@ -10,12 +12,13 @@ from appium_demo.module.webviewac import WebViewActivity
 class MainActivity(AppElement):
     def __init__(self):
         print("________主页界面测试________")
-        self.driver.wait_activity(".module.main.MainActivity", 10)
+        activity_class = activity_list.get(self.__class__.__name__, "NullActivityClass")
+        self.driver.wait_activity(activity_class, 5)
 
     def homeTest(self, vp_test=True, grid_test=True):
         home_fragment = HomeFragment()
         if vp_test: home_fragment.viewPagerTest()
-        if grid_test: home_fragment.gridClick(2)
+        if grid_test: home_fragment.gridClick(3)
 
     def mineTest(self):
         self.waitTime(1)
@@ -65,3 +68,4 @@ class HomeFragment(AppElement):
         if module_num == 3 or module_num == -1:
             # 建议反馈点击
             module_rv.find_elements(by=By.CLASS_NAME, value="android.widget.LinearLayout")[3].click()
+            feedbackactivity = FeedbackActivity()

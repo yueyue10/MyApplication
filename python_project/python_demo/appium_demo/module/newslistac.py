@@ -6,7 +6,6 @@ from appium_demo.module.newsdetailac import NewsDetailActivity
 class NewsListActivity(Activity):
     def __init__(self):
         Activity.__init__(self, self.__class__.__name__)
-        self.driver.wait_activity(".module.news.NewsListActivity", 5)
         self.scrollTest()
         self.voteTest()
         self.itemClickTest()
