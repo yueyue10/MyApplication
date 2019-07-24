@@ -3,9 +3,9 @@ import os
 from appium import webdriver
 
 from appium_demo import AppConfig, desired_caps
-from appium_demo.service import multi_appium
 from appium_demo.base.appelement import AppElement
 from appium_demo.module.mainac import MainActivity
+from appium_demo.service import multi_appium, android_avd
 
 
 class App(AppElement):
@@ -21,10 +21,12 @@ class App(AppElement):
         # mainAc.mineTest()
 
 
+# print("环境变量检查:", os.environ)
+# print("ANDROID_HOME:", os.environ.get('ANDROID_HOME'))
+
 if __name__ == "__main__":
     multi_appium.start_service()
-    print("环境变量检查:", os.environ)
-    print("ANDROID_HOME:", os.environ.get('ANDROID_HOME'))
+    android_avd.start_avd()
     print("\n连接模拟器...")
     AppElement.driver = webdriver.Remote(AppConfig.service_path, desired_caps)
     app = App()
