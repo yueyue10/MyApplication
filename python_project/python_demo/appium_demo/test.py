@@ -26,7 +26,6 @@ class App(AppElement):
 
 if __name__ == "__main__":
     multi_appium.start_service()
-    android_avd.start_avd()
     print("\n连接模拟器...")
     AppElement.driver = webdriver.Remote(AppConfig.service_path, desired_caps)
     app = App()
