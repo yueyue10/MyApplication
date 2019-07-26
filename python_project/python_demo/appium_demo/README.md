@@ -7,13 +7,14 @@
 
 ```运行test.py程序就可以开启Appium服务(配置后也可打开Android模拟器) ，然后使用appium测试代码对梦廊坊APP进程自动化测试。```
 
+> * 系统环境: Win10
+> * 视频录制使用: FSCapture
+> * 开发工具使用: IntelliJ IDEA Community Edition
+
 - 项目目的:
    1. 回顾学习的python知识;
    2. 学习appium测试框架的使用
    3. 以后有机会爬取其他app数据
-> * 系统环境: Win10
-> * 视频录制使用: FSCapture
-> * 开发工具使用: IntelliJ IDEA Community Edition
 - appium运行过程中遇到的问题:
    1. 安装过程比较繁琐,考验耐心的时间啊` v `
    2. 配置AndroidSdk环境变量,每次修改后需要重启电脑才能生效
@@ -77,18 +78,18 @@
 
 ----------
 ### 参考网址：
-[一个测试相关的博客][3]
-[python+Appium自动化基础篇-环境][4]
-[命令行启动AppiumServer][5]
-[Appium的一些问题的总结答案][6]
-[appium常用元素定位技巧][7]
-[appium ：desired_caps参数][8]
-[appium查找控件等待方法][9]
-[appium中定位元素的等待方法][10]
-[Selenium 之 WebDriverWait][11]
-[Selenium-自动化测试之时间等待][12]
-[webdriver中的等待][13]
-[os.popen控制台输出][14]
+> * [一个测试相关的博客][3]
+> * [python+Appium自动化基础篇-环境][4]
+> * [命令行启动AppiumServer][5]
+> * [Appium的一些问题的总结答案][6]
+> * [appium常用元素定位技巧][7]
+> * [appium ：desired_caps参数][8]
+> * [appium查找控件等待方法][9]
+> * [appium中定位元素的等待方法][10]
+> * [Selenium 之 WebDriverWait][11]
+> * [Selenium-自动化测试之时间等待][12]
+> * [webdriver中的等待][13]
+> * [os.popen控制台输出][14]
 
 
   [1]: http://www.xitongtiandi.net/wenzhang/win10/21037.html
