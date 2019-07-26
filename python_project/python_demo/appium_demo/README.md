@@ -47,7 +47,7 @@
 
       2.4. 多次测试之后发现将C:\Program Files\修改成C:\Progra~1\即可。大功告成！！！
    3. 现在通过项目中的multi_appium.start_service已经可以正常启动AppiumService.
-- **项目优化:*
+- **项目优化:**
 
    ```每次启动appium服务后日志都不受控制的输出到了控制台上,这是我不想看到的。```
    1. 现在想要做到日志可控,error的日志可以输出控制台,其他日志不输出。
@@ -61,7 +61,7 @@
 > * 可以通过Appium Desktop启动Appium
 > * 电脑已经连接Android设备或者Android模拟器
 
-#### 项目运行具体执行步骤:
+### 项目运行具体执行步骤:
 
 > * 1.启动Android模拟器或者连接Android设备
 > * 2.将梦廊坊安装包安装到Android模拟器或者Android设备(下载地址在下方)
@@ -72,10 +72,10 @@
 
 ###### 启动Android模拟器视频:
 
-[![启动Android模拟器视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_start_avd.png)](https://v.qq.com/txp/iframe/player.html?vid=j0884yv58jc)
+[![启动Android模拟器视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_start_avd.png)](https://v.qq.com/txp/iframe/player.html?vid=n0904ylssg7)
 
 ###### appium测试视频:
-[![appium测试视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_appium_test1.png)](https://v.qq.com/txp/iframe/player.html?vid=j0884yv58jc)
+[![appium测试视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_appium_test1.png)](https://v.qq.com/txp/iframe/player.html?vid=n0904sjnf67)
 
 > <div align="center">
 > <h4 align="center">项目运行截图</h4>
