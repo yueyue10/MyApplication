@@ -1,8 +1,3 @@
-import os
-
-from appium import webdriver
-
-from appium_demo import AppConfig, desired_caps
 from appium_demo.base.appelement import AppElement
 from appium_demo.module.mainac import MainActivity
 from appium_demo.service import multi_appium, android_avd
@@ -25,8 +20,9 @@ class App(AppElement):
 # print("ANDROID_HOME:", os.environ.get('ANDROID_HOME'))
 
 if __name__ == "__main__":
+    # 通过下面这种方式启动Android模拟器会出现一个启动窗口。可以在android_avd里面单独开启。
+    # android_avd.start_avd(start_style='exe')
     multi_appium.start_service()
-    print("\n连接模拟器...")
-    AppElement.driver = webdriver.Remote(AppConfig.service_path, desired_caps)
+    multi_appium.con_device()
     app = App()
     app.test()

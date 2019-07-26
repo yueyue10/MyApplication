@@ -15,6 +15,7 @@ class CmdTest:
 
     # 查看4723端口占用信息：   netstat -aon |findstr 4723
     # 杀掉pid是23112的程序：   taskkill -f -pid 23112
+    # 启动Android模拟器：   E:\Users\Android\sdk\tools\emulator.exe -netdelay none -netspeed full -avd Nexus_6P_API_26
 
 
 class CmdCode:
@@ -27,12 +28,17 @@ class CmdCode:
     kill_process_by_pid = "taskkill -f -pid %s"
     # 通过node启动appium服务      参数：js_path, host, port
     node_start_appium = r'start /b node %s --address %s --port %s'
+    adb_devices = 'adb devices'
+    # 启动Android模拟器      参数：emulator_path ,avd_name
+    start_avd = '%s %s -netdelay none -netspeed full -avd %s'
+    kill_adb_service = 'adb kill-server'
+    start_adb_service = 'adb start-server'
 
 
 def cmd_system(cmd_code, show_log=False):
     if show_log: print("_____执行cmd命令_____", cmd_code)
     cmd_pro = os.system(cmd_code)
-    print("cmd_system", cmd_pro)
+    print("cmd_pro", cmd_pro)
 
 
 # os.popen其实只是对subprocess.Popen

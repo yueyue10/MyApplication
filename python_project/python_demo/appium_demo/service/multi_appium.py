@@ -2,6 +2,10 @@
 import logging
 import time
 
+from appium import webdriver
+
+from appium_demo import AppConfig, desired_caps
+from appium_demo.base.appelement import AppElement
 from appium_demo.utils import cmd_utils
 from appium_demo.utils.cmd_utils import CmdCode
 
@@ -49,6 +53,19 @@ def start_service():
     app_service.kill_appium(port)
     # app_service.appium_start(js_path, host, port)
     app_service.node_start_appium(js_path, host, port)
+
+
+def con_device():
+    print("\n连接模拟器...")
+    con_ = False
+    while not con_:
+        try:
+            AppElement.driver = webdriver.Remote(AppConfig.service_path, desired_caps)
+            print("连接成功")
+            con_ = True
+        except Exception as e:
+            time.sleep(15)
+            print("正在重新连接", e)
 
 
 if __name__ == '__main__':
