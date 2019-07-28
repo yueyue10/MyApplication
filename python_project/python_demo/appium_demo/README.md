@@ -70,11 +70,9 @@
 > * 3.2如果需要测试python打开Android设备,根据个人电脑配置修改appium_demo/android_avd里面的avd_name,device_name,emulator_path
 > * 4.运行appium_demo/test.py程序,排查错误.正常情况就可以看到效果.
 
-###### 启动Android模拟器视频:
-
+> **启动Android模拟器视频:**
 [![启动Android模拟器视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_start_avd.png)](https://v.qq.com/txp/iframe/player.html?vid=n0904ylssg7)
-
-###### appium测试视频:
+**appium测试视频:**
 [![appium测试视频](https://github.com/yueyue10/MyApplication/raw/master/python_project/python_demo/appium_demo/doc/video_appium_test1.png)](https://v.qq.com/txp/iframe/player.html?vid=n0904sjnf67)
 
 > <div align="center">
