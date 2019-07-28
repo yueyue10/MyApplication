@@ -1,9 +1,14 @@
+import logging
 import random
 import threading
+import time
 
 import requests
 # 请求头
 from lxml import etree
+
+from appium_demo import log
+from appium_demo.log import LogConfig
 
 user_agent_list = [
     'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
@@ -41,12 +46,14 @@ class RequestRobot(threading.Thread):
         self.page = _page
 
     def run(self):
+        # 存储代理的列表
+        proxys_list = []
         threadLock.acquire()
         print("当前线程：", threading.currentThread().getName(), "______________获取代理列表______________", self.page)
         # requests的Session可以自动保持cookie,不需要自己维护cookie内容
         _session = requests.Session()
         # 西祠代理高匿IP地址
-        target_url = 'https://www.kuaidaili.com/free/inha/%d' % self.page
+        target_url = daili_url % self.page
         # get请求
         target_response = _session.get(url=target_url, headers=target_headers)
         # utf-8编码
@@ -56,23 +63,22 @@ class RequestRobot(threading.Thread):
         # 获取id为ip_list的table
         com_html = etree.HTML(target_html)
         ip_list_info = com_html.xpath('//table[@class="table table-bordered table-striped"]/tbody/tr')
-        # 存储代理的列表
-        proxys_list = []
         # 爬取每个代理信息
         for ip_info in ip_list_info:
             ip = ip_info.xpath('./td[1]')[0].text
             port = ip_info.xpath('./td[2]')[0].text
             protocol = ip_info.xpath('./td[4]')[0].text.lower()
             proxys_list.append(protocol + '#' + ip + '#' + port)
-        print("请求博客详情", self.page)
+        time.sleep(2)
+        threadLock.release()
         # 请求博客详情
         for proxy in proxys_list:
             split_proxy = proxy.split('#')
-            self.http(url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
-        threadLock.release()
+            self.http(blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
         # 返回代理列表
         return proxys_list
 
+    # 请求博客详情
     def http(self, _url, _proxyHttp, _proxyHost, _proxyPort):
         proxy_meta = "%(http)s://%(host)s:%(port)s" % {
             "http": _proxyHttp,
@@ -85,33 +91,39 @@ class RequestRobot(threading.Thread):
         }
         try:
             # print(self.proxies)
-            # requests.adapters.DEFAULT_RETRIES = 3
-            # s = requests.session()
-            # s.keep_alive = False
-            # print("开始请求blog")
-            req = requests.get(url=_url, headers=headers, proxies=proxies, timeout=3)
+            requests.adapters.DEFAULT_RETRIES = 3
+            s = requests.session()
+            s.keep_alive = False
+            req = requests.get(url=_url, headers=headers, proxies=proxies, timeout=5)
             req.encoding = 'utf-8'
             if req.status_code == 200:
                 html = req.text
                 com_html = etree.HTML(html)
                 read_count = com_html.xpath('//span[@class="read-count"]')
-                if read_count:
+                if read_count:  # 输出：阅读数
                     print(proxy_meta, read_count[0].text)
             else:
                 print("请求无响应：")
         except Exception as e:
-            print("ip不可用：", proxy_meta, e)
+            print("ip不可用：", proxy_meta)
+            logging.error("ip不可用：" + str(proxy_meta) + str(e))
+
+
+def visit_blog(thread_num=20):
+    threads = []
+    for x in range(1, thread_num):
+        threads.append(RequestRobot(_page=x))
+    # 启动所有线程
+    for t in threads:
+        t.start()
+    # 主线程中等待所有子线程退出
+    for t in threads:
+        t.join()
 
 
 if __name__ == '__main__':
-    url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
-    threads = []
+    path = LogConfig.log_path
+    daili_url = 'https://www.kuaidaili.com/free/inha/%d'
+    blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
     threadLock = threading.Lock()
-    for x in range(1, 3):
-        threads.append(RequestRobot(_page=x))
-    # # 启动所有线程
-    for t in threads:
-        t.start()
-    # # 主线程中等待所有子线程退出
-    for t in threads:
-        t.join()
+    visit_blog()
