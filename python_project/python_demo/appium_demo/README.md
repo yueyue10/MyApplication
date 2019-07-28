@@ -1,5 +1,5 @@
-# appium_demo [其他python工具][15]
-参考网上关于appium测试框架的文档构建该项目
+# appium_demo
+参考网上关于appium测试框架的文档构建该项目[其他python工具][15]
 
 ## 项目介绍：
 
@@ -116,4 +116,4 @@
   [12]: https://www.jianshu.com/p/46359b8758d4 "Selenium-自动化测试之时间等待"
   [13]: https://blog.csdn.net/sinat_41774836/article/details/88965281 "webdriver中的等待"
   [14]: https://blog.csdn.net/Ls4034/article/details/89161157 "os.popen控制台输出"
-  [15]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/appium_demo/other "其他python程序"
+  [15]: https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/appium_demo/other.md "其他python程序"
