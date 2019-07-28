@@ -46,30 +46,17 @@ class RequestRobot(threading.Thread):
         self.page = _page
 
     def run(self):
-        # 存储代理的列表
         proxys_list = []
         threadLock.acquire()
-        print("当前线程：", threading.currentThread().getName(), "______________获取代理列表______________", self.page)
-        # requests的Session可以自动保持cookie,不需要自己维护cookie内容
-        _session = requests.Session()
-        # 西祠代理高匿IP地址
-        target_url = daili_url % self.page
-        # get请求
-        target_response = _session.get(url=target_url, headers=target_headers)
-        # utf-8编码
-        target_response.encoding = 'utf-8'
-        # 获取网页信息
-        target_html = target_response.text
-        # 获取id为ip_list的table
-        com_html = etree.HTML(target_html)
-        ip_list_info = com_html.xpath('//table[@class="table table-bordered table-striped"]/tbody/tr')
-        # 爬取每个代理信息
-        for ip_info in ip_list_info:
-            ip = ip_info.xpath('./td[1]')[0].text
-            port = ip_info.xpath('./td[2]')[0].text
-            protocol = ip_info.xpath('./td[4]')[0].text.lower()
-            proxys_list.append(protocol + '#' + ip + '#' + port)
-        time.sleep(2)
+        # 存储代理的列表
+        req = requests.get(daili_url, headers=headers, timeout=5)
+        print(time.time(), req.json())
+        # print(req.json())
+        # print(type(req.json()))
+        # print(req.json().get("msg"))
+        for ips in req.json().get("msg"):
+            proxys_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
+        time.sleep(10)
         threadLock.release()
         # 请求博客详情
         for proxy in proxys_list:
@@ -122,9 +109,9 @@ def visit_blog(thread_num=20):
 
 
 if __name__ == '__main__':
-    '''使用快代理网址的动态ip，因为是免费的成功率很低'''
+    '''使用《蘑菇代理》网址的动态ip，正常是收费的，因为新用户免费体验送了400条'''
     path = LogConfig.log_path
-    daili_url = 'https://www.kuaidaili.com/free/inha/%d'
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
+    daili_url = 'http://piping.mogumiao.com/proxy/api/get_ip_bs?appKey=5e9bf0cd2f574a93ad38600c67a805a5&count=10&expiryDate=0&format=1&newLine=2'
     threadLock = threading.Lock()
-    visit_blog()
+    visit_blog(thread_num=100)
