@@ -1,3 +1,4 @@
+import json
 import logging
 import random
 import threading
@@ -9,6 +10,7 @@ from lxml import etree
 
 from appium_demo import log
 from appium_demo.log import LogConfig
+from appium_demo.other import json_data
 
 user_agent_list = [
     'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
@@ -41,17 +43,19 @@ target_headers = {'Upgrade-Insecure-Requests': '1',
 
 class RequestRobot(threading.Thread):
 
-    def __init__(self, _page, _type="xici"):
+    def __init__(self, _page, _thread_num, _name="xici"):
         threading.Thread.__init__(self)
         self.page = _page
-        self._type = _type
+        self._name = _name
+        self._thread_num = _thread_num
         self.proxy_list = []
 
     def run(self):
         threadLock.acquire()
         print("当前线程：", threading.currentThread().getName(), "______________获取代理列表______________", self.page)
-        if self._type == 'xicidaili': self.get_proxy_xici()
-        if self._type == 'kuaidaili': self.get_proxy_kuai_daili()
+        if self._name == 'xicidaili': self.get_proxy_xici()
+        if self._name == 'kuaidaili': self.get_proxy_kuai_daili()
+        self.save_data()
         threadLock.release()
         # 请求博客详情
         for proxy in self.proxy_list:
@@ -102,6 +106,25 @@ class RequestRobot(threading.Thread):
         except Exception as e:
             print(target_html, "\n解析出错", e)
 
+    def save_data(self):
+        if self.page == self._thread_num:
+            print("保存json文件到json.txt")
+            data = []
+            for proxy in self.proxy_list:
+                split_proxy = proxy.split('#')
+                proxy = {
+                    "IP": split_proxy[1],
+                    "Port": split_proxy[2],
+                    "Protocol": split_proxy[0]
+                }
+                data.append(proxy)
+            json_data['data'] = data
+            json_data['msg'] = '从%s爬取的代理ip数据' % self._name
+            data_json = json.dumps(json_data)
+            f = open('json.txt', 'w')
+            f.write(data_json)
+            f.close()
+
     # 请求博客详情
     def http(self, _url, _proxyHttp, _proxyHost, _proxyPort):
         proxy_meta = "%(http)s://%(host)s:%(port)s" % {
@@ -133,10 +156,10 @@ class RequestRobot(threading.Thread):
             logging.error("ip不可用：" + str(proxy_meta))
 
 
-def visit_blog(thread_num=20, _type='xicidaili'):
+def visit_blog(thread_num=20, _name='xicidaili'):
     threads = []
     for x in range(0, thread_num):
-        threads.append(RequestRobot(_page=x + 1, _type=_type))
+        threads.append(RequestRobot(_page=x + 1, _thread_num=thread_num, _name=_name))
     # 启动所有线程
     for t in threads:
         t.start()
@@ -156,5 +179,5 @@ if __name__ == '__main__':
         'kuaidaili': 'https://www.kuaidaili.com/free/inha/%d',
     }
     threadLock = threading.Lock()
-    visit_blog(thread_num=10, _type='xicidaili')
-    visit_blog(thread_num=10, _type='kuaidaili')
+    # visit_blog(thread_num=10, _name='xicidaili')
+    visit_blog(thread_num=2, _name='kuaidaili')
