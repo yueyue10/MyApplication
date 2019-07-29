@@ -5,7 +5,8 @@ Appium 测试框架使用
 desired_caps = {
     'platformName': 'Android',
     'automationName': 'UiAutomator2',
-    'deviceName': 'emulator-5554',
+    # 'deviceName': 'emulator-5554',
+    'deviceName': '3SC7N16B07000927',
     'platformVersion': '8.0',
     'appPackage': 'com.ennova.dreamlf',
     'appActivity': 'com.ennova.dreamlf.module.main.splash.SplashActivity',

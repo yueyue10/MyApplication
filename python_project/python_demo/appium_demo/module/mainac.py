@@ -18,7 +18,7 @@ class MainActivity(AppElement):
     def homeTest(self, vp_test=True, grid_test=True):
         home_fragment = HomeFragment()
         if vp_test: home_fragment.viewPagerTest()
-        if grid_test: home_fragment.gridClick(3)
+        if grid_test: home_fragment.gridClick()
 
     def mineTest(self):
         self.waitTime(1)

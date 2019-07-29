@@ -41,29 +41,66 @@ target_headers = {'Upgrade-Insecure-Requests': '1',
 
 class RequestRobot(threading.Thread):
 
-    def __init__(self, _page):
+    def __init__(self, _page, _type="xici"):
         threading.Thread.__init__(self)
         self.page = _page
+        self._type = _type
+        self.proxy_list = []
 
     def run(self):
-        proxys_list = []
         threadLock.acquire()
-        # 存储代理的列表
-        req = requests.get(daili_url, headers=headers, timeout=5)
-        print(time.time(), req.json())
-        # print(req.json())
-        # print(type(req.json()))
-        # print(req.json().get("msg"))
-        for ips in req.json().get("msg"):
-            proxys_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
-        time.sleep(10)
+        print("当前线程：", threading.currentThread().getName(), "______________获取代理列表______________", self.page)
+        if self._type == 'xicidaili': self.get_proxy_xici()
+        if self._type == 'kuaidaili': self.get_proxy_kuai_daili()
         threadLock.release()
         # 请求博客详情
-        for proxy in proxys_list:
+        for proxy in self.proxy_list:
             split_proxy = proxy.split('#')
             self.http(blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
-        # 返回代理列表
-        return proxys_list
+
+    def get_proxy_xici(self):
+        # requests的Session可以自动保持cookie,不需要自己维护cookie内容
+        _session = requests.Session()
+        # 西祠代理高匿IP地址
+        target_url = dai_li_url.get('xicidaili') % self.page
+        # get请求
+        target_response = _session.get(url=target_url, headers=target_headers)
+        # utf-8编码
+        target_response.encoding = 'utf-8'
+        # 获取网页信息
+        target_html = target_response.text
+        try:
+            # 获取id为ip_list的table
+            com_html = etree.HTML(target_html)
+            ip_list_info = com_html.xpath('//table[@id="ip_list"]/tr')
+            # 爬取每个代理信息
+            for ip_info in ip_list_info[1:]:
+                ip = ip_info.xpath('./td[2]')[0].text
+                port = ip_info.xpath('./td[3]')[0].text
+                protocol = ip_info.xpath('./td[6]')[0].text.lower()
+                self.proxy_list.append(protocol + '#' + ip + '#' + port)
+            time.sleep(2)
+        except Exception as e:
+            print(target_html, "\n解析出错", e)
+
+    def get_proxy_kuai_daili(self):
+        _session = requests.Session()
+        target_url = dai_li_url.get('kuaidaili') % self.page
+        target_response = _session.get(url=target_url, headers=target_headers)
+        target_response.encoding = 'utf-8'
+        target_html = target_response.text
+        try:
+            com_html = etree.HTML(target_html)
+            ip_list_info = com_html.xpath('//table[@class="table table-bordered table-striped"]/tbody/tr')
+            # 爬取每个代理信息
+            for ip_info in ip_list_info:
+                ip = ip_info.xpath('./td[1]')[0].text
+                port = ip_info.xpath('./td[2]')[0].text
+                protocol = ip_info.xpath('./td[4]')[0].text.lower()
+                self.proxy_list.append(protocol + '#' + ip + '#' + port)
+            time.sleep(2)
+        except Exception as e:
+            print(target_html, "\n解析出错", e)
 
     # 请求博客详情
     def http(self, _url, _proxyHttp, _proxyHost, _proxyPort):
@@ -93,13 +130,13 @@ class RequestRobot(threading.Thread):
                 print("请求无响应：")
         except Exception as e:
             print("ip不可用：", proxy_meta)
-            logging.error("ip不可用：" + str(proxy_meta) + str(e))
+            logging.error("ip不可用：" + str(proxy_meta))
 
 
-def visit_blog(thread_num=20):
+def visit_blog(thread_num=20, _type='xicidaili'):
     threads = []
-    for x in range(1, thread_num):
-        threads.append(RequestRobot(_page=x))
+    for x in range(0, thread_num):
+        threads.append(RequestRobot(_page=x + 1, _type=_type))
     # 启动所有线程
     for t in threads:
         t.start()
@@ -109,9 +146,15 @@ def visit_blog(thread_num=20):
 
 
 if __name__ == '__main__':
-    '''使用《蘑菇代理》网址的动态ip，正常是收费的，因为新用户免费体验送了400条'''
+    '''使用西刺代理网址的动态ip，因为是免费的成功率很低'''
     path = LogConfig.log_path
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
-    daili_url = 'http://piping.mogumiao.com/proxy/api/get_ip_bs?appKey=5e9bf0cd2f574a93ad38600c67a805a5&count=10&expiryDate=0&format=1&newLine=2'
+    dai_li_url = {
+        # 西刺代理
+        'xicidaili': 'https://www.xicidaili.com/nn/%d',
+        # 快代理
+        'kuaidaili': 'https://www.kuaidaili.com/free/inha/%d',
+    }
     threadLock = threading.Lock()
-    visit_blog(thread_num=100)
+    visit_blog(thread_num=10, _type='xicidaili')
+    visit_blog(thread_num=10, _type='kuaidaili')

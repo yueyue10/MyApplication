@@ -1,6 +1,7 @@
 # coding=utf-8
 import logging
 import time
+from multiprocessing import Process
 
 from appium import webdriver
 
@@ -15,7 +16,7 @@ class AppiumService:
     def kill_appium(self, port):
         print('关闭Appium 进程')
         cmd = CmdCode.find_port_take_up % str(port)
-        process_list = cmd_utils.cmd_popen(cmd, show_log=False)
+        process_list = cmd_utils.cmd_popen(cmd, line=True, show_log=False)
         if type(process_list) == str and process_list:
             pid = process_list.split(" ")[-1]
             cmd_utils.cmd_popen(CmdCode.kill_process_by_pid % str(pid), show_log=False)
@@ -35,6 +36,11 @@ class AppiumService:
         cmd = CmdCode.node_start_appium % (js_path, host, port)
         cmd_utils.process_popen(cmd, show_log=True)
 
+    def start_appium_process(self, js_path, host, port):
+        p1 = Process(target=self.node_start_appium(js_path, host, port))
+        p1.start()
+        print("Appium服务启动完成！")
+
     def node_start_appium(self, js_path, host, port):
         '''方法二：通过node方式 启动appium server
             os.system 执行没有日志，但是服务可以使用
@@ -53,6 +59,7 @@ def start_service():
     app_service.kill_appium(port)
     # app_service.appium_start(js_path, host, port)
     app_service.node_start_appium(js_path, host, port)
+    # app_service.start_appium_process(js_path, host, port)
 
 
 def con_device():

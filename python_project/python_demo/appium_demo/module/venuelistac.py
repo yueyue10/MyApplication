@@ -10,7 +10,7 @@ class VenueListActivity(Activity):
 
     def scrollTest(self):
         vp_venue = self.findElementId("vp_venue")
-        self.swipeLeft(element=vp_venue, n=2)
+        if vp_venue: self.swipeLeft(element=vp_venue, n=2)
 
     def toDetail(self):
         tv_to_detail = self.findElementId("tv_to_detail")
