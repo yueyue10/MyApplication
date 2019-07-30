@@ -48,7 +48,7 @@ class RequestRobot(threading.Thread):
         self.page = _page
         self._name = _name
         self._thread_num = _thread_num
-        self.proxy_list = []
+        self._proxy_list = []
 
     def run(self):
         threadLock.acquire()
@@ -58,7 +58,7 @@ class RequestRobot(threading.Thread):
         self.save_data()
         threadLock.release()
         # 请求博客详情
-        for proxy in self.proxy_list:
+        for proxy in self._proxy_list:
             split_proxy = proxy.split('#')
             self.http(blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
 
@@ -82,7 +82,8 @@ class RequestRobot(threading.Thread):
                 ip = ip_info.xpath('./td[2]')[0].text
                 port = ip_info.xpath('./td[3]')[0].text
                 protocol = ip_info.xpath('./td[6]')[0].text.lower()
-                self.proxy_list.append(protocol + '#' + ip + '#' + port)
+                self._proxy_list.append(protocol + '#' + ip + '#' + port)
+                global_proxy_list.append(protocol + '#' + ip + '#' + port)
             time.sleep(2)
         except Exception as e:
             print(target_html, "\n解析出错", e)
@@ -101,7 +102,8 @@ class RequestRobot(threading.Thread):
                 ip = ip_info.xpath('./td[1]')[0].text
                 port = ip_info.xpath('./td[2]')[0].text
                 protocol = ip_info.xpath('./td[4]')[0].text.lower()
-                self.proxy_list.append(protocol + '#' + ip + '#' + port)
+                self._proxy_list.append(protocol + '#' + ip + '#' + port)
+                global_proxy_list.append(protocol + '#' + ip + '#' + port)
             time.sleep(2)
         except Exception as e:
             print(target_html, "\n解析出错", e)
@@ -110,7 +112,7 @@ class RequestRobot(threading.Thread):
         if self.page == self._thread_num:
             print("保存json文件到json.txt")
             data = []
-            for proxy in self.proxy_list:
+            for proxy in global_proxy_list:
                 split_proxy = proxy.split('#')
                 proxy = {
                     "IP": split_proxy[1],
@@ -179,5 +181,6 @@ if __name__ == '__main__':
         'kuaidaili': 'https://www.kuaidaili.com/free/inha/%d',
     }
     threadLock = threading.Lock()
+    global_proxy_list = []
     # visit_blog(thread_num=10, _name='xicidaili')
     visit_blog(thread_num=2, _name='kuaidaili')
