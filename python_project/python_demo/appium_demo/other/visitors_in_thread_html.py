@@ -73,20 +73,23 @@ class RequestRobot(threading.Thread):
         target_response.encoding = 'utf-8'
         # 获取网页信息
         target_html = target_response.text
-        try:
-            # 获取id为ip_list的table
-            com_html = etree.HTML(target_html)
-            ip_list_info = com_html.xpath('//table[@id="ip_list"]/tr')
-            # 爬取每个代理信息
-            for ip_info in ip_list_info[1:]:
-                ip = ip_info.xpath('./td[2]')[0].text
-                port = ip_info.xpath('./td[3]')[0].text
-                protocol = ip_info.xpath('./td[6]')[0].text.lower()
-                self._proxy_list.append(protocol + '#' + ip + '#' + port)
-                global_proxy_list.append(protocol + '#' + ip + '#' + port)
-            time.sleep(2)
-        except Exception as e:
-            print(target_html, "\n解析出错", e)
+        if target_response.status_code == 200:
+            try:
+                # 获取id为ip_list的table
+                com_html = etree.HTML(target_html)
+                ip_list_info = com_html.xpath('//table[@id="ip_list"]/tr')
+                # 爬取每个代理信息
+                for ip_info in ip_list_info[1:]:
+                    ip = ip_info.xpath('./td[2]')[0].text
+                    port = ip_info.xpath('./td[3]')[0].text
+                    protocol = ip_info.xpath('./td[6]')[0].text.lower()
+                    self._proxy_list.append(protocol + '#' + ip + '#' + port)
+                    global_proxy_list.append(protocol + '#' + ip + '#' + port)
+                time.sleep(2)
+            except Exception as e:
+                print(target_html, "\n解析出错", e)
+        else:
+            print(target_url, '接口异常')
 
     def get_proxy_kuai_daili(self):
         _session = requests.Session()
@@ -94,19 +97,22 @@ class RequestRobot(threading.Thread):
         target_response = _session.get(url=target_url, headers=target_headers)
         target_response.encoding = 'utf-8'
         target_html = target_response.text
-        try:
-            com_html = etree.HTML(target_html)
-            ip_list_info = com_html.xpath('//table[@class="table table-bordered table-striped"]/tbody/tr')
-            # 爬取每个代理信息
-            for ip_info in ip_list_info:
-                ip = ip_info.xpath('./td[1]')[0].text
-                port = ip_info.xpath('./td[2]')[0].text
-                protocol = ip_info.xpath('./td[4]')[0].text.lower()
-                self._proxy_list.append(protocol + '#' + ip + '#' + port)
-                global_proxy_list.append(protocol + '#' + ip + '#' + port)
-            time.sleep(2)
-        except Exception as e:
-            print(target_html, "\n解析出错", e)
+        if target_response.status_code == 200:
+            try:
+                com_html = etree.HTML(target_html)
+                ip_list_info = com_html.xpath('//table[@class="table table-bordered table-striped"]/tbody/tr')
+                # 爬取每个代理信息
+                for ip_info in ip_list_info:
+                    ip = ip_info.xpath('./td[1]')[0].text
+                    port = ip_info.xpath('./td[2]')[0].text
+                    protocol = ip_info.xpath('./td[4]')[0].text.lower()
+                    self._proxy_list.append(protocol + '#' + ip + '#' + port)
+                    global_proxy_list.append(protocol + '#' + ip + '#' + port)
+                time.sleep(2)
+            except Exception as e:
+                print(target_html, "\n解析出错", e)
+        else:
+            print(target_url, '接口异常')
 
     def save_data(self):
         if self.page == self._thread_num:
@@ -182,5 +188,5 @@ if __name__ == '__main__':
     }
     threadLock = threading.Lock()
     global_proxy_list = []
-    # visit_blog(thread_num=10, _name='xicidaili')
-    visit_blog(thread_num=2, _name='kuaidaili')
+    visit_blog(thread_num=10, _name='xicidaili')
+    # visit_blog(thread_num=2, _name='kuaidaili')
