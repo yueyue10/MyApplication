@@ -1,7 +1,0 @@
-2019-07-25 16:21:21,328  logger/logger.py:47  This is info
-2019-07-25 16:21:21,330  logger/logger.py:52  This is warning
-2019-07-25 16:21:21,330  logger/logger.py:57  This is error
-2019-07-25 16:31:49,689  logs_test/logs_test.py:77  输出
-2019-07-25 16:32:28,995  logs_test/logs_test.py:77  输出
-2019-07-25 16:32:43,046  logs_test/logs_test.py:77  输出
-2019-07-25 16:32:51,025  logs_test/logs_test.py:77  输出12

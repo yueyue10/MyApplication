@@ -2,7 +2,7 @@ import logging
 import os
 from logging import handlers
 
-from appium_demo.log import LogConfig
+from appium_demo.log import LogConfig, save_log
 from appium_demo.log.logger import MyLog
 
 
@@ -74,4 +74,5 @@ if __name__ == '__main__':
     # log.e("error")
     # 测试代码三:可以保存到固定位置,可是日志定位是logger/logger.py
     # test()
-    logging.error("输出12")
+    # logging.error("输出12")
+    save_log(1, '2')

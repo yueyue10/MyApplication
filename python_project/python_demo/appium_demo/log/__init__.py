@@ -34,6 +34,8 @@ logging.basicConfig(level=logging.ERROR, filename=os.path.join(LogConfig.log_pat
 # 3.结果>>>>>>>>>>>>
 # 虽然实现了目的，但是输出到文件的日志定位路径失败
 print("log.init配置log成功")
+
+
 #
 # --------------------测试二------------------------------
 # 为了测试将日志保存到固定文件夹,使用网上找到的logger.MyLog进行测试
@@ -47,3 +49,15 @@ print("log.init配置log成功")
 # 2.优化logging.basicConfig,将filename修改为文件全路径
 # 3.在需要的时候执行:logging.info("输出日志")即可
 # 4:结果:控制台没有输出,保存的日志文件在log/data/error.log中
+
+def save_log(*objects):
+    try:
+        strings = []
+        for obj in objects:
+            try:
+                strings.append(str(obj))
+            except Exception as e:
+                print('strings.append错误', e)
+        logging.error("".join(strings))
+    except Exception as e:
+        print('save_log错误', e)

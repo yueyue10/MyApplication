@@ -1,4 +1,4 @@
-import logging
+import json
 import random
 import threading
 import time
@@ -7,8 +7,8 @@ import requests
 # 请求头
 from lxml import etree
 
-from appium_demo import log
-from appium_demo.log import LogConfig
+from appium_demo.log import save_log
+from appium_demo.other import json_data
 
 user_agent_list = [
     'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
@@ -42,20 +42,22 @@ target_headers = {'Upgrade-Insecure-Requests': '1',
 
 class RequestRobot(threading.Thread):
 
-    def __init__(self, _page, _type=''):
+    def __init__(self, _page, _thread_num, _name=''):
         threading.Thread.__init__(self)
         self.page = _page
-        self._type = _type
-        self.proxy_list = []
+        self._name = _name
+        self._thread_num = _thread_num
+        self._proxy_list = []
 
     def run(self):
         threadLock.acquire()
-        if self._type == 'mo_gu_url': self.get_mo_gu()
-        if self._type == 'heng_xing_url': self.get_heng_xing()
-        if self._type == 'easy_url': self.get_easy_json()
+        if self._name == 'mo_gu_url': self.get_mo_gu()
+        if self._name == 'heng_xing_url': self.get_heng_xing()
+        if self._name == 'easy_url': self.get_easy_json()
+        self.save_data()
         threadLock.release()
         # 请求博客详情
-        for proxy in self.proxy_list:
+        for proxy in self._proxy_list:
             split_proxy = proxy.split('#')
             self.http(blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
 
@@ -65,10 +67,12 @@ class RequestRobot(threading.Thread):
         print(time.time(), req.json())
         try:
             for ips in req.json().get("msg"):
-                self.proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
-            time.sleep(10)
-        except:
-            print("json解析错误")
+                self._proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
+                global_proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
+        except Exception as e:
+            print("json解析错误", e)
+        finally:
+            self.wait_time(5)
 
     def get_heng_xing(self):
         # 存储代理的列表
@@ -76,10 +80,12 @@ class RequestRobot(threading.Thread):
         print(time.time(), req.text)
         try:
             for ips in req.json().get("data"):
-                self.proxy_list.append("https" + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
-            time.sleep(3)
-        except:
-            print("json解析错误")
+                self._proxy_list.append("https" + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
+                global_proxy_list.append("https" + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
+        except Exception as e:
+            print("json解析错误", e)
+        finally:
+            self.wait_time(5)
 
     def get_easy_json(self):
         headers['Accept'] = 'application/json; charset=utf-8'
@@ -88,10 +94,36 @@ class RequestRobot(threading.Thread):
         print(time.time(), req.text)
         try:
             for ips in req.json().get("data"):
-                self.proxy_list.append("https" + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
-            time.sleep(1)
-        except:
-            print("json解析错误")
+                protocol = 'https'
+                if ips.get("Protocol"): protocol = ips.get("Protocol")
+                self._proxy_list.append(protocol + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
+                global_proxy_list.append(protocol + '#' + ips.get("IP") + '#' + str(ips.get("Port")))
+        except Exception as e:
+            print("json解析错误", e)
+        finally:
+            self.wait_time(3)
+
+    def wait_time(self, _time):
+        time.sleep(_time)
+
+    def save_data(self):
+        if self.page == self._thread_num:
+            print("保存json文件到json.txt")
+            data = []
+            for proxy in global_proxy_list:
+                split_proxy = proxy.split('#')
+                proxy = {
+                    "IP": split_proxy[1],
+                    "Port": split_proxy[2],
+                    "Protocol": split_proxy[0]
+                }
+                data.append(proxy)
+            json_data['data'] = data
+            json_data['msg'] = '从%s爬取的代理ip数据' % self._name
+            data_json = json.dumps(json_data)
+            f = open('json.txt', 'w')
+            f.write(data_json)
+            f.close()
 
     # 请求博客详情
     def http(self, _url, _proxyHttp, _proxyHost, _proxyPort):
@@ -121,13 +153,13 @@ class RequestRobot(threading.Thread):
                 print("请求无响应：")
         except Exception as e:
             print("ip不可用：", proxy_meta)
-            logging.error("ip不可用：" + str(proxy_meta) + str(e))
+            save_log("ip不可用：", proxy_meta, e)
 
 
-def visit_blog(thread_num=20, _type="mo_gu_url"):
+def visit_blog(thread_num=20, _name="mo_gu_url"):
     threads = []
     for x in range(0, thread_num):
-        threads.append(RequestRobot(_page=x + 1, _type=_type))
+        threads.append(RequestRobot(_page=x + 1, _thread_num=thread_num, _name=_name))
     # 启动所有线程
     for t in threads:
         t.start()
@@ -138,7 +170,6 @@ def visit_blog(thread_num=20, _type="mo_gu_url"):
 
 if __name__ == '__main__':
     '''使用《蘑菇代理》网址的动态ip，正常是收费的，因为新用户免费体验送了400条'''
-    path = LogConfig.log_path
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
     dai_li_url = {
         # 蘑菇代理
@@ -146,9 +177,10 @@ if __name__ == '__main__':
         # 恒星爬虫代理
         'heng_xing_url': 'http://120.79.197.226:8080/Index-generate_api_url.html?packid=1&fa=0&qty=10&port=1&format=json&ss=5&css=&pro=&city=&usertype=8',
         # easy_api
-        'easy_url': 'https://www.easy-mock.com/mock/5d3ea7aab080cd6e28ae9511/bigdata/ip_list',
+        'easy_url': 'https://www.easy-mock.com/mock/5d3ea7aab080cd6e28ae9511/bigdata/ip_list1',
     }
     threadLock = threading.Lock()
-    visit_blog(thread_num=100, _type='mo_gu_url')
-    # visit_blog(thread_num=10, _type='heng_xing_url')
-    # visit_blog(thread_num=3, _type='easy_url')
+    global_proxy_list = []
+    # visit_blog(thread_num=10, _name='mo_gu_url')
+    # visit_blog(thread_num=10, _name='heng_xing_url')
+    visit_blog(thread_num=1, _name='easy_url')

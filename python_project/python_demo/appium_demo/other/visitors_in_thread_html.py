@@ -1,5 +1,4 @@
 import json
-import logging
 import random
 import threading
 import time
@@ -8,8 +7,7 @@ import requests
 # 请求头
 from lxml import etree
 
-from appium_demo import log
-from appium_demo.log import LogConfig
+from appium_demo.log import LogConfig, save_log
 from appium_demo.other import json_data
 
 user_agent_list = [
@@ -28,8 +26,8 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
            'User-Agent': random.choice(user_agent_list),
            'Accept-Encoding': 'gzip, deflate',
            'Accept-Language': 'zh-CN,zh;q=0.8',
+           'keep_alive ': 'False',
            # 'Connection': 'close',
-           # 'keep_alive ': 'False',
            }
 # 完善的headers
 target_headers = {'Upgrade-Insecure-Requests': '1',
@@ -52,7 +50,7 @@ class RequestRobot(threading.Thread):
 
     def run(self):
         threadLock.acquire()
-        print("当前线程：", threading.currentThread().getName(), "______________获取代理列表______________", self.page)
+        print(time.time(), threading.currentThread().getName(), "______________获取代理列表______________", self.page)
         if self._name == 'xicidaili': self.get_proxy_xici()
         if self._name == 'kuaidaili': self.get_proxy_kuai_daili()
         self.save_data()
@@ -85,9 +83,10 @@ class RequestRobot(threading.Thread):
                     protocol = ip_info.xpath('./td[6]')[0].text.lower()
                     self._proxy_list.append(protocol + '#' + ip + '#' + port)
                     global_proxy_list.append(protocol + '#' + ip + '#' + port)
-                time.sleep(2)
             except Exception as e:
                 print(target_html, "\n解析出错", e)
+            finally:
+                time.sleep(2)
         else:
             print(target_url, '接口异常')
 
@@ -108,9 +107,10 @@ class RequestRobot(threading.Thread):
                     protocol = ip_info.xpath('./td[4]')[0].text.lower()
                     self._proxy_list.append(protocol + '#' + ip + '#' + port)
                     global_proxy_list.append(protocol + '#' + ip + '#' + port)
-                time.sleep(2)
             except Exception as e:
                 print(target_html, "\n解析出错", e)
+            finally:
+                time.sleep(2)
         else:
             print(target_url, '接口异常')
 
@@ -146,9 +146,7 @@ class RequestRobot(threading.Thread):
         }
         try:
             # print(self.proxies)
-            requests.adapters.DEFAULT_RETRIES = 3
-            s = requests.session()
-            s.keep_alive = False
+            # requests.adapters.DEFAULT_RETRIES = 3
             req = requests.get(url=_url, headers=headers, proxies=proxies, timeout=5)
             req.encoding = 'utf-8'
             if req.status_code == 200:
@@ -160,8 +158,10 @@ class RequestRobot(threading.Thread):
             else:
                 print("请求无响应：")
         except Exception as e:
-            print("ip不可用：", proxy_meta)
-            logging.error("ip不可用：" + str(proxy_meta))
+            print("ip不可用：", proxy_meta, e)
+            save_log("ip不可用：", proxy_meta, e)
+        finally:
+            time.sleep(1)
 
 
 def visit_blog(thread_num=20, _name='xicidaili'):
@@ -188,5 +188,5 @@ if __name__ == '__main__':
     }
     threadLock = threading.Lock()
     global_proxy_list = []
-    visit_blog(thread_num=10, _name='xicidaili')
-    # visit_blog(thread_num=2, _name='kuaidaili')
+    # visit_blog(thread_num=10, _name='xicidaili')
+    visit_blog(thread_num=3, _name='kuaidaili')
