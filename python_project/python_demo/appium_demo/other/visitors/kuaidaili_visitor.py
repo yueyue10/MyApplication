@@ -1,42 +1,42 @@
 import json
-import random
 import threading
 import time
 
 import requests
-# 请求头
 from lxml import etree
 
-from appium_demo.log import LogConfig, save_log
+from appium_demo.log import save_log
 from appium_demo.other import json_data
+from appium_demo.other.visitors.visitors_in_thread_html import target_headers, headers
 
-user_agent_list = [
-    'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
-    'Mozilla/4.0(compatible;MSIE8.0;WindowsNT6.0;Trident/4.0)',
-    'Mozilla/4.0(compatible;MSIE7.0;WindowsNT6.0)',
-    'Opera/9.80(WindowsNT6.1;U;en)Presto/2.8.131Version/11.11',
-    'Mozilla/5.0(WindowsNT6.1;rv:2.0.1)Gecko/20100101Firefox/4.0.1',
-    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.71 Safari/537.1 LBBROWSER',
-    'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; QQDownload 732; .NET4.0C; .NET4.0E)',
-    'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 SE 2.X MetaSr 1.0',
-    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.4.3.4000 Chrome/30.0.1599.101 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 UBrowser/4.0.3214.0 Safari/537.36'
-]
-headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-           'User-Agent': random.choice(user_agent_list),
-           'Accept-Encoding': 'gzip, deflate',
-           'Accept-Language': 'zh-CN,zh;q=0.8',
-           'keep_alive ': 'False',
-           # 'Connection': 'close',
-           }
-# 完善的headers
-target_headers = {'Upgrade-Insecure-Requests': '1',
-                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                  'Referer': 'http://www.xicidaili.com/nn/',
-                  'Accept-Encoding': 'gzip, deflate, sdch',
-                  'Accept-Language': 'zh-CN,zh;q=0.8',
-                  }
+
+class KuiDaiLi:
+    threadLock = threading.Lock()
+    blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
+    dai_li_url = {
+        # 西刺代理
+        'xicidaili': 'https://www.xicidaili.com/nn/%d',
+        # 快代理
+        'kuaidaili': 'https://www.kuaidaili.com/free/inha/%d',
+    }
+    global_proxy_list = []
+
+    def __init__(self):
+        pass
+
+    def start(self):
+        self.visit_blog(thread_num=1, _name='kuaidaili')
+
+    def visit_blog(self, thread_num=20, _name='xicidaili'):
+        threads = []
+        for x in range(0, thread_num):
+            threads.append(RequestRobot(_page=x + 1, _thread_num=thread_num, _name=_name))
+        # 启动所有线程
+        for t in threads:
+            t.start()
+        # 主线程中等待所有子线程退出
+        for t in threads:
+            t.join()
 
 
 class RequestRobot(threading.Thread):
@@ -49,22 +49,22 @@ class RequestRobot(threading.Thread):
         self._proxy_list = []
 
     def run(self):
-        threadLock.acquire()
+        KuiDaiLi.threadLock.acquire()
         print(time.time(), threading.currentThread().getName(), "______________获取代理列表______________", self.page)
         if self._name == 'xicidaili': self.get_proxy_xici()
         if self._name == 'kuaidaili': self.get_proxy_kuai_daili()
         self.save_data()
-        threadLock.release()
+        KuiDaiLi.threadLock.release()
         # 请求博客详情
         for proxy in self._proxy_list:
             split_proxy = proxy.split('#')
-            self.http(blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
+            self.http(KuiDaiLi.blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
 
     def get_proxy_xici(self):
         # requests的Session可以自动保持cookie,不需要自己维护cookie内容
         _session = requests.Session()
         # 西祠代理高匿IP地址
-        target_url = dai_li_url.get('xicidaili') % self.page
+        target_url = KuiDaiLi.dai_li_url.get('xicidaili') % self.page
         # get请求
         target_response = _session.get(url=target_url, headers=target_headers)
         # utf-8编码
@@ -82,7 +82,7 @@ class RequestRobot(threading.Thread):
                     port = ip_info.xpath('./td[3]')[0].text
                     protocol = ip_info.xpath('./td[6]')[0].text.lower()
                     self._proxy_list.append(protocol + '#' + ip + '#' + port)
-                    global_proxy_list.append(protocol + '#' + ip + '#' + port)
+                    KuiDaiLi.global_proxy_list.append(protocol + '#' + ip + '#' + port)
             except Exception as e:
                 print(target_html, "\n解析出错", e)
             finally:
@@ -92,7 +92,7 @@ class RequestRobot(threading.Thread):
 
     def get_proxy_kuai_daili(self):
         _session = requests.Session()
-        target_url = dai_li_url.get('kuaidaili') % self.page
+        target_url = KuiDaiLi.dai_li_url.get('kuaidaili') % self.page
         target_response = _session.get(url=target_url, headers=target_headers)
         target_response.encoding = 'utf-8'
         target_html = target_response.text
@@ -106,7 +106,7 @@ class RequestRobot(threading.Thread):
                     port = ip_info.xpath('./td[2]')[0].text
                     protocol = ip_info.xpath('./td[4]')[0].text.lower()
                     self._proxy_list.append(protocol + '#' + ip + '#' + port)
-                    global_proxy_list.append(protocol + '#' + ip + '#' + port)
+                    KuiDaiLi.global_proxy_list.append(protocol + '#' + ip + '#' + port)
             except Exception as e:
                 print(target_html, "\n解析出错", e)
             finally:
@@ -118,7 +118,7 @@ class RequestRobot(threading.Thread):
         if self.page == self._thread_num:
             print("保存json文件到json.txt")
             data = []
-            for proxy in global_proxy_list:
+            for proxy in KuiDaiLi.global_proxy_list:
                 split_proxy = proxy.split('#')
                 proxy = {
                     "IP": split_proxy[1],
@@ -147,7 +147,7 @@ class RequestRobot(threading.Thread):
         try:
             # print(self.proxies)
             # requests.adapters.DEFAULT_RETRIES = 3
-            req = requests.get(url=_url, headers=headers, proxies=proxies, timeout=5)
+            req = requests.get(url=_url, headers=headers, proxies=proxies, timeout=2)
             req.encoding = 'utf-8'
             if req.status_code == 200:
                 html = req.text
@@ -162,31 +162,3 @@ class RequestRobot(threading.Thread):
             save_log("ip不可用：", proxy_meta, e)
         finally:
             time.sleep(1)
-
-
-def visit_blog(thread_num=20, _name='xicidaili'):
-    threads = []
-    for x in range(0, thread_num):
-        threads.append(RequestRobot(_page=x + 1, _thread_num=thread_num, _name=_name))
-    # 启动所有线程
-    for t in threads:
-        t.start()
-    # 主线程中等待所有子线程退出
-    for t in threads:
-        t.join()
-
-
-if __name__ == '__main__':
-    '''使用西刺代理网址的动态ip，因为是免费的成功率很低'''
-    path = LogConfig.log_path
-    blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
-    dai_li_url = {
-        # 西刺代理
-        'xicidaili': 'https://www.xicidaili.com/nn/%d',
-        # 快代理
-        'kuaidaili': 'https://www.kuaidaili.com/free/inha/%d',
-    }
-    threadLock = threading.Lock()
-    global_proxy_list = []
-    # visit_blog(thread_num=10, _name='xicidaili')
-    visit_blog(thread_num=3, _name='kuaidaili')

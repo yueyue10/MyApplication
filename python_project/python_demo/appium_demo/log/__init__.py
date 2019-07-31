@@ -8,16 +8,26 @@ import os
 class LogConfig:
     fmt_style = '%(asctime)s  %(module)s/%(filename)s:%(lineno)d  %(message)s'
     log_path = r'E:\Users\Github\MyApplication\python_project\python_demo\appium_demo\log\data'
+    log_name = 'error.log'
+    INIT_LOG = False
 
 
-'''配置方法一：保存日志到文件不会输出到控制台'''
-logging.basicConfig(level=logging.ERROR, filename=os.path.join(LogConfig.log_path, 'error.log'),
-                    filemode='w',
-                    # 模式:有w和a
-                    # w就是写模式，每次都会重新写日志，覆盖之前的日志
-                    # a是追加模式，默认如果不写的话，就是追加模式
-                    format=LogConfig.fmt_style)
+def init_log(_log_name):
+    '''配置方法一：保存日志到文件不会输出到控制台'''
+    LogConfig.INIT_LOG = True
+    LogConfig.log_name = _log_name
+    logging.basicConfig(level=logging.ERROR, filename=os.path.join(LogConfig.log_path, LogConfig.log_name),
+                        filemode='a',
+                        # 模式:有w和a
+                        # w就是写模式，每次都会重新写日志，覆盖之前的日志
+                        # a是追加模式，默认如果不写的话，就是追加模式
+                        format=LogConfig.fmt_style)
+    print("log.init配置log成功")
+
+
 '''配置方法二：输出日志到控制台不会输出到文件'''
+
+
 # logging.basicConfig(level=logging.DEBUG,
 #                     format=LogConfig.fmt_style)
 #
@@ -33,7 +43,6 @@ logging.basicConfig(level=logging.ERROR, filename=os.path.join(LogConfig.log_pat
 # 2019-07-25 14:46:11,966  logs/logs.py:46  出错了
 # 3.结果>>>>>>>>>>>>
 # 虽然实现了目的，但是输出到文件的日志定位路径失败
-print("log.init配置log成功")
 
 
 #
@@ -50,7 +59,9 @@ print("log.init配置log成功")
 # 3.在需要的时候执行:logging.info("输出日志")即可
 # 4:结果:控制台没有输出,保存的日志文件在log/data/error.log中
 
-def save_log(*objects):
+def save_log(*objects, _log_name='error.log'):
+    if _log_name != LogConfig.log_name or not LogConfig.INIT_LOG:
+        init_log(_log_name)
     try:
         strings = []
         for obj in objects:
