@@ -33,6 +33,8 @@ class CmdCode:
     start_avd = '%s %s -netdelay none -netspeed full -avd %s'
     kill_adb_service = 'adb kill-server'
     start_adb_service = 'adb start-server'
+    # 打包成apk
+    setup_exe = 'pyinstaller -F  %s'
 
 
 def cmd_system(cmd_code, show_log=False):

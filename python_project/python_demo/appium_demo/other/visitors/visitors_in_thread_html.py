@@ -7,7 +7,7 @@ import requests
 # 请求头
 from lxml import etree
 
-from appium_demo.log import LogConfig, save_log
+from appium_demo.log import save_log
 from appium_demo.other import json_data
 
 user_agent_list = [
@@ -178,7 +178,6 @@ def visit_blog(thread_num=20, _name='xicidaili'):
 
 if __name__ == '__main__':
     '''使用西刺代理网址的动态ip，因为是免费的成功率很低'''
-    path = LogConfig.log_path
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
     dai_li_url = {
         # 西刺代理

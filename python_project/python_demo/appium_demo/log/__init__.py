@@ -12,12 +12,13 @@ class LogConfig:
     INIT_LOG = False
 
 
-def init_log(_log_name):
+def init_log(_log_path=LogConfig.log_path, _log_name=LogConfig.log_name, _filemode='w'):
     '''配置方法一：保存日志到文件不会输出到控制台'''
     LogConfig.INIT_LOG = True
+    LogConfig.log_path = _log_path
     LogConfig.log_name = _log_name
     logging.basicConfig(level=logging.ERROR, filename=os.path.join(LogConfig.log_path, LogConfig.log_name),
-                        filemode='a',
+                        filemode=_filemode,
                         # 模式:有w和a
                         # w就是写模式，每次都会重新写日志，覆盖之前的日志
                         # a是追加模式，默认如果不写的话，就是追加模式
@@ -59,9 +60,9 @@ def init_log(_log_name):
 # 3.在需要的时候执行:logging.info("输出日志")即可
 # 4:结果:控制台没有输出,保存的日志文件在log/data/error.log中
 
-def save_log(*objects, _log_name='error.log'):
-    if _log_name != LogConfig.log_name or not LogConfig.INIT_LOG:
-        init_log(_log_name)
+def save_log(*objects):
+    if not LogConfig.INIT_LOG:
+        init_log()
     try:
         strings = []
         for obj in objects:
