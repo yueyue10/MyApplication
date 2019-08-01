@@ -58,7 +58,8 @@ class RequestRobot(threading.Thread):
         # 请求博客详情
         for proxy in self._proxy_list:
             split_proxy = proxy.split('#')
-            self.http(KuiDaiLi.blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1], _proxyPort=split_proxy[2])
+            self.http(KuiDaiLi.blog_url, _proxyHttp=split_proxy[0], _proxyHost=split_proxy[1],
+                      _proxyPort=split_proxy[2])
 
     def get_proxy_xici(self):
         # requests的Session可以自动保持cookie,不需要自己维护cookie内容
@@ -158,7 +159,7 @@ class RequestRobot(threading.Thread):
             else:
                 print("请求无响应：")
         except Exception as e:
-            print("ip不可用：", proxy_meta, e)
+            print("ip不可用：", proxy_meta)
             save_log("ip不可用：", proxy_meta, e)
         finally:
             time.sleep(1)

@@ -22,3 +22,7 @@ def scheduled_job_visit():
 if __name__ == '__main__':
     print('任务启动')
     scheduler.start()
+
+# pyinstaller -F  *.py
+# pyinstaller -F appium_demo/other/scheduler/start_visit.py
+# .\start_visit.exe
