@@ -61,7 +61,7 @@ class MoGuRequest:
 
     def __init__(self):
         self._proxy_list = []
-        self._json_urls = [self.gd_main_url_net, self.gd_cai_url_net]
+        self._json_urls = [self.bd_cai_url_json, self.bd_main_url_json, self.gd_cai_url_net]
 
     def start(self, _type='easy'):
         if _type == 'mogu': self.get_mo_gu()
@@ -72,6 +72,7 @@ class MoGuRequest:
                 self.request_url(self.blog_url, proxy)
                 for _json_url in self._json_urls:
                     self.get_easy_json(_json_url, proxy)
+        print('___________本轮请求已完成___________')
 
     # 请求蘑菇代理ip
     def get_mo_gu(self):
@@ -96,7 +97,7 @@ class MoGuRequest:
         if proxy: proxy_meta, proxies = self.get_proxy_meta(proxy)
         try:
             req = requests.get(_url, headers=headers, proxies=proxies, timeout=5)
-            print("json>>", req.text)
+            # print("json>>", req.text)
             if req.status_code == 200:
                 if 'amap.com' in _url:
                     _url_type = '高德地图'
