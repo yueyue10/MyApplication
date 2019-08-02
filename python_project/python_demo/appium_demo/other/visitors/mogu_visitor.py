@@ -61,7 +61,7 @@ class MoGuRequest:
 
     def __init__(self):
         self._proxy_list = []
-        self._json_urls = [self.gd_main_url_net, self.gd_cai_url_net, self.bd_main_url_json, self.bd_cai_url_json]
+        self._json_urls = [self.gd_main_url_net, self.gd_cai_url_net]
 
     def start(self, _type='easy'):
         if _type == 'mogu': self.get_mo_gu()
@@ -73,10 +73,11 @@ class MoGuRequest:
                 for _json_url in self._json_urls:
                     self.get_easy_json(_json_url, proxy)
 
+    # 请求蘑菇代理ip
     def get_mo_gu(self):
         # 存储代理的列表
         req = requests.get(self.mo_gu_url, headers=headers, timeout=5)
-        print(time.time(), req.json())
+        print("mogu的json数据>>", req.json())
         try:
             for ips in req.json().get("msg"):
                 self._proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
@@ -85,13 +86,14 @@ class MoGuRequest:
         finally:
             self.wait_time(1)
 
+    # 请求json数据
     def get_easy_json(self, _url=easy_url, proxy=''):
         headers['Accept'] = 'application/json; charset=utf-8'
         # 存储代理的列表
         proxy_meta = ''
         proxies = ''
-        if proxy: proxy_meta, proxies = self.get_proxy_meta(proxy)
         _url_type = ''
+        if proxy: proxy_meta, proxies = self.get_proxy_meta(proxy)
         try:
             req = requests.get(_url, headers=headers, proxies=proxies, timeout=5)
             print("json>>", req.text)
@@ -99,13 +101,13 @@ class MoGuRequest:
                 if 'amap.com' in _url:
                     _url_type = '高德地图'
                     name = req.json().get("data").get("base").get("name")
-                    print("json获取成功++%s++>>" % _url_type, proxy_meta, name)
+                    print("json获取成功__%s__>>" % _url_type, proxy_meta, name)
                 elif 'baidu' in _url:
                     _url_type = '百度地图'
                     name = req.json().get("result").get("what")
-                    print("json获取成功++%s++>>" % _url_type, proxy_meta, name)
+                    print("json获取成功__%s__>>" % _url_type, proxy_meta, name)
                 else:  # easy-api
-                    _url_type = 'easy api'
+                    _url_type = 'easy-mock'
                     for ips in req.json().get("data"):
                         protocol = 'https'
                         if ips.get("Protocol"): protocol = ips.get("Protocol")
@@ -113,8 +115,12 @@ class MoGuRequest:
             else:
                 print("请求无响应：")
         except Exception as e:
-            print("json解析错误++%s++>>" % _url_type, proxy_meta, e)
-            save_log("json解析错误++%s++>>：" % _url_type, proxy_meta, e)
+            if _url_type:
+                print("json解析错误__%s__>>" % _url_type, proxy_meta, e)
+                save_log("json解析错误__%s__>>：" % _url_type, proxy_meta, e)
+            else:
+                dom = _url.split('//')[1].split('.com')[0]
+                print("ip不可用__%s__>>" % dom, proxy_meta, e)
         finally:
             self.wait_time(2)
 
@@ -137,11 +143,13 @@ class MoGuRequest:
                 print("请求无响应：")
         except Exception as e:
             self.remove_port(proxy)
-            print("ip不可用：", proxy_meta, e)
-            save_log("ip不可用：", proxy_meta, e)
+            dom = _url.split('//')[1].split('.net')[0]
+            print("ip不可用__%s__>>" % dom, proxy_meta, e)
+            save_log("ip不可用__%s__>>" % dom, proxy_meta, e)
         finally:
             self.wait_time(2)
 
+    # 保存json数据
     def save_data(self, _type):
         print("保存json文件到json.txt")
         data = []
@@ -199,5 +207,5 @@ def test_json_request(_url=MoGuRequest.gd_main_url_net):
 
 
 if __name__ == '__main__':
-    test_proxy_request(_type='mogu')
-    # test_json_request(_url=MoGuRequest.bd_main_url_json)
+    # test_proxy_request(_type='mogu')
+    test_proxy_request()
