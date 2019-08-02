@@ -56,7 +56,7 @@ class MoGuRequest:
     # 博客
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
     # 代理网址
-    mo_gu_url = 'http://piping.mogumiao.com/proxy/api/get_ip_al?appKey=b4c273db82cc4492a8790045e9b43c54&count=3&expiryDate=0&format=1&newLine=2'
+    mo_gu_url = 'http://piping.mogumiao.com/proxy/api/get_ip_al?appKey=b4c273db82cc4492a8790045e9b43c54&count=5&expiryDate=0&format=1&newLine=2'
     easy_url = 'https://www.easy-mock.com/mock/5d3ea7aab080cd6e28ae9511/bigdata/ip_list'
 
     def __init__(self):

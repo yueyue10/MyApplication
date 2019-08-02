@@ -15,12 +15,13 @@ def job_brush_flow():
     '''
     init_log(_log_path='', _log_name='brush_flow.log', _filemode='a')
     save_log("_________brush start_________", now_datetime())
-    MoGuRequest().start()
+    mogu = MoGuRequest()
+    mogu.start(_type='mogu')
     save_log("_________brush end_________\n", now_datetime())
 
 
 def start_scheduler():
-    trigger = CronTrigger(day_of_week='mon-sun', hour='11-14', minute='*/1')
+    trigger = CronTrigger(day_of_week='mon-sun', hour='11-14', minute='30')
     scheduler.add_job(job_brush_flow, trigger)  # 根据需要进行设置
     scheduler.start()
 
@@ -30,5 +31,5 @@ if __name__ == '__main__':
     start_scheduler()
 
 # pyinstaller -F  *.py
-# pyinstaller -F appium_demo/other/scheduler/go_visit.py
-# .\go_visit.exe
+# pyinstaller -F appium_demo/other/scheduler/go_brush_flow.py
+# .\go_brush_flow.exe
