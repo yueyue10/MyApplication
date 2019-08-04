@@ -8,7 +8,7 @@ from lxml import etree
 
 from appium_demo.log import save_log
 from appium_demo.other import json_data
-from appium_demo.other.visitors.map_header import cookie_list
+from appium_demo.other.visitors.cookie.selenium_test import SeleniumClient
 
 user_agent_list = [
     'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
@@ -29,19 +29,10 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
            # 'Connection': 'close',
            # 'keep_alive ': 'False',
            }
-headers_gd = {'Accept': 'application/json; charset=utf-8',
-              'User-Agent': random.choice(user_agent_list),
-              'Accept-Encoding': 'gzip, deflate',
-              'Accept-Language': 'zh-CN,zh;q=0.8',
-              'Cookie': random.choice(cookie_list),
-              }
 
 
 class MoGuRequest:
     '''使用《蘑菇代理》网址的动态ip，因为ip数量有限就不使用多线程'''
-    # 高德
-    gd_main_url_json = 'https://m.amap.com/service/poi/id.json?id=B0FFIPJE9Z&uuid=3dd576ee-173e-467f-946d-b2153437ddcc'  # 搜索-network
-    gd_cai_url_json = 'https://m.amap.com/service/poi/id.json?id=B0FFF4VIBD&uuid=3dd576ee-173e-467f-946d-b2153437ddcc'  # 搜索-network
 
     # 百度
     bd_main_url_json = 'https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=s&da_src=searchBox.button&wd=%E8%B5%B5%E5%9B%9B%E9%A5%B8%E9%A5%B9%E9%9D%A2&c=2589&src=0&wd2=&pn=0&sug=0&l=10&b=(12356672.188326357,4809792.545941422;12556426.244393302,4970411.113472803)&from=webmap&biz_forward={%22scaler%22:2,%22styles%22:%22pl%22}&sug_forward=&auth=KFE8H5I%40A9G04PDN00Ef%3D0MMK%40aCHd%3DWuxHLENxzzHxtDpnSCE%40%40By1uVt1GgvPUDZYOYIZuVt1cv3uVtGccZcuVtPWv3GuBtR9KxXwUvhgMZSguxzBEHLNRTVtcEWe1GD8zv7u%40ZPuVteuztexZFTHrwzDvqs2osGIRVOXI33LXFuyWWJL0IBggc1a&device_ratio=2&tn=B_NORMAL_MAP&nn=0&u_loc=12967743,4840033&ie=utf-8&t=1564712258807'
@@ -53,7 +44,7 @@ class MoGuRequest:
 
     def __init__(self, count=5):
         self._proxy_list = []
-        self._json_urls = [self.bd_cai_url_json, self.bd_main_url_json, self.gd_main_url_json, self.gd_cai_url_json]
+        self._json_urls = [self.bd_cai_url_json, self.bd_main_url_json]
         self.mo_gu_url = 'http://piping.mogumiao.com/proxy/api/get_ip_al?appKey=b4c273db82cc4492a8790045e9b43c54&count=%d&expiryDate=0&format=1&newLine=2' % count
 
     def start(self, _type='easy'):
@@ -65,6 +56,8 @@ class MoGuRequest:
                 self.request_url(self.blog_url, proxy)
                 for _json_url in self._json_urls:
                     self.get_easy_json(_json_url, proxy)
+                selenium = SeleniumClient()
+                selenium.go_url(SeleniumClient.gd_cai_url, SeleniumClient.gd_main_url)
         print('___________本轮请求已完成___________')
 
     # 请求蘑菇代理ip
@@ -199,12 +192,18 @@ def test_proxy_request(_type='mogu', count=2):
     mogu.start(_type=_type)
 
 
-def test_json_request(_url=MoGuRequest.gd_cai_url_json):
+def test_json_request(_url=MoGuRequest.bd_main_url_json):
     mogu = MoGuRequest()
     mogu.get_easy_json(_url=_url)
 
 
+def test_blog_request():
+    mogu = MoGuRequest()
+    mogu.request_url(_url=MoGuRequest.blog_url, proxy='')
+
+
 if __name__ == '__main__':
     # test_proxy_request(count=5)
-    # test_proxy_request(_type='mogu')
-    test_json_request(_url=MoGuRequest.gd_cai_url_json)
+    test_proxy_request(_type='mogu')
+    # test_blog_request()
+    # test_json_request(_url=MoGuRequest.bd_main_url_json)
