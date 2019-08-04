@@ -26,34 +26,49 @@ class SeleniumClient:
 
     def __init__(self, proxy=''):
         self.chromeOptions = webdriver.ChromeOptions()
-        # 设置中文
+        self.proxy_meta = ''
+        if proxy:
+            self.proxy_meta = self.get_proxy(proxy=proxy)
+            self.chromeOptions.add_argument("--proxy-server=%s" % self.proxy_meta)
         self.agent = random.choice(user_agent_list_3)
         self.chromeOptions.add_argument('lang=zh_CN.UTF-8')
         self.chromeOptions.add_argument('user-agent="%s"' % self.agent)
-        if proxy: self.chromeOptions.add_argument("--proxy-server=%s" % proxy)
         self.browser = webdriver.Chrome(options=self.chromeOptions)
 
     def go_url(self, *_urls):
-        cookies = self.browser.get_cookies()
-        print(self.agent)
-        # print(f"main: cookies = {cookies}")
         # 清除浏览器cookies
-        self.browser.delete_all_cookies()
+        # self.browser.delete_all_cookies()
         try:
             for url in _urls:
                 self.browser.get(url)
                 self.print_content()
-            self.quit()
         except Exception as e:
-            print('请求超时', e)
+            dom = self.gd_cai_url.split('//')[1].split('.com')[0]
+            print("请求超时__%s__>>" % dom, self.proxy_meta, e)
+        finally:
+            self.quit()
 
     def print_content(self):
         time.sleep(1)
-        span_text = self.browser.find_elements_by_xpath('//span[@class="name text-overflow"]')[0]
-        print(span_text.text)
+        span_text = self.browser.find_elements_by_xpath('//span[@class="name text-overflow"]')
+        if span_text:
+            print("html获取成功__高德地图__>>%s" % self.proxy_meta, span_text[0].text)
 
     def quit(self):
         if self.browser: self.browser.quit()
+
+    @staticmethod
+    def get_proxy(proxy):
+        split_proxy = proxy.split('#')
+        _proxy_http = split_proxy[0]
+        _proxy_host = split_proxy[1]
+        _proxy_port = split_proxy[2]
+        proxy_meta = "%(http)s://%(host)s:%(port)s" % {
+            "http": _proxy_http,
+            "host": _proxy_host,
+            "port": _proxy_port
+        }
+        return proxy_meta
 
 
 if __name__ == '__main__':

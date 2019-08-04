@@ -56,7 +56,7 @@ class MoGuRequest:
                 self.request_url(self.blog_url, proxy)
                 for _json_url in self._json_urls:
                     self.get_easy_json(_json_url, proxy)
-                selenium = SeleniumClient()
+                selenium = SeleniumClient(proxy=proxy)
                 selenium.go_url(SeleniumClient.gd_cai_url, SeleniumClient.gd_main_url)
         print('___________本轮请求已完成___________')
 
@@ -83,7 +83,7 @@ class MoGuRequest:
         if proxy: proxy_meta, proxies = self.get_proxy_meta(proxy)
         try:
             req = requests.get(_url, headers=headers, proxies=proxies, timeout=5)
-            print("json>>", req.text)
+            # print("json>>", req.text)
             if req.status_code == 200:
                 if 'amap.com' in _url:
                     _url_type = '高德地图'
