@@ -8,6 +8,7 @@ from lxml import etree
 
 from appium_demo.log import save_log
 from appium_demo.other import json_data
+from appium_demo.other.visitors.map_header import cookie_list
 
 user_agent_list = [
     'Mozilla/5.0(compatible;MSIE9.0;WindowsNT6.1;Trident/5.0)',
@@ -21,7 +22,6 @@ user_agent_list = [
     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.4.3.4000 Chrome/30.0.1599.101 Safari/537.36',
     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 UBrowser/4.0.3214.0 Safari/537.36'
 ]
-
 headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
            'User-Agent': random.choice(user_agent_list),
            'Accept-Encoding': 'gzip, deflate',
@@ -29,39 +29,32 @@ headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,imag
            # 'Connection': 'close',
            # 'keep_alive ': 'False',
            }
-
-
-class Test:
-    # 高德
-    gd_main_url = 'https://surl.amap.com/4kS7TFI1Mj'
-    gd_main_url_search = 'https://www.amap.com/service/poiInfo?query_type=IDQ&pagesize=20&pagenum=1&qii=true&cluster_state=5&need_utd=true&utd_sceneid=1000&div=PC1000&addr_poi_merge=true&is_classify=true&zoom=18&id=B0FFIPJE9Z&city=150925&geoobj=112.495651%7C40.524669%7C112.499979%7C40.526305&keywords=%E8%B5%B5%E5%9B%9B%E9%A5%B8%E9%A5%B9%E9%9D%A2'
-    gd_cai_url = 'https://surl.amap.com/4jViED1j7T9'  # 分享链接
-    # gd_mian_url = 'https://www.amap.com/place/B0FFF4VIBD'#网页链接1
-    # gd_mian_url = 'https://m.amap.com/search/mapview/poiid=B0FFF4VIBD'#网页链接2
-    # gd_main_url_in_json = 'http://wb.amap.com/?p=B0FFF4VIBD%2C40.526855%2C112.503824%2C%E6%B4%BB%E9%B1%BC%E5%86%9C%E5%AE%B6%E8%8F%9C%2C%E4%B9%8C%E5%85%B0%E5%AF%9F%E5%B8%83%E5%B8%82%E5%87%89%E5%9F%8E%E5%8E%BF%E9%B8%BF%E8%8C%85%E9%95%87%E5%AE%A3%E5%BE%B7%E8%A1%97'  # json里面的分享地址
-    # 百度
-    bd_cai_url = 'http://j.map.baidu.com/10/zZd'
-    bd_cai_url = 'https://map.baidu.com/search/%E6%B4%BB%E9%B1%BC%E5%86%9C%E5%AE%B6%E8%8F%9C/@12970743,4843033,13z?querytype=inf&uid=ae9081579d93b6fc6e20b953&c=131&da_src=shareurl'
-    bd_main_url = 'http://j.map.baidu.com/38/aPd'
+headers_gd = {'Accept': 'application/json; charset=utf-8',
+              'User-Agent': random.choice(user_agent_list),
+              'Accept-Encoding': 'gzip, deflate',
+              'Accept-Language': 'zh-CN,zh;q=0.8',
+              'Cookie': random.choice(cookie_list),
+              }
 
 
 class MoGuRequest:
     '''使用《蘑菇代理》网址的动态ip，因为ip数量有限就不使用多线程'''
     # 高德
-    gd_main_url_net = 'https://ditu.amap.com/detail/get/detail?id=B0FFIPJE9Z'  # 搜索-network
-    gd_cai_url_net = 'https://ditu.amap.com/detail/get/detail?id=B0FFF4VIBD'  # 搜索-network
+    gd_main_url_json = 'https://m.amap.com/service/poi/id.json?id=B0FFIPJE9Z&uuid=3dd576ee-173e-467f-946d-b2153437ddcc'  # 搜索-network
+    gd_cai_url_json = 'https://m.amap.com/service/poi/id.json?id=B0FFF4VIBD&uuid=3dd576ee-173e-467f-946d-b2153437ddcc'  # 搜索-network
+
     # 百度
     bd_main_url_json = 'https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=direct&pcevaname=pc4.1&qt=s&da_src=searchBox.button&wd=%E8%B5%B5%E5%9B%9B%E9%A5%B8%E9%A5%B9%E9%9D%A2&c=2589&src=0&wd2=&pn=0&sug=0&l=10&b=(12356672.188326357,4809792.545941422;12556426.244393302,4970411.113472803)&from=webmap&biz_forward={%22scaler%22:2,%22styles%22:%22pl%22}&sug_forward=&auth=KFE8H5I%40A9G04PDN00Ef%3D0MMK%40aCHd%3DWuxHLENxzzHxtDpnSCE%40%40By1uVt1GgvPUDZYOYIZuVt1cv3uVtGccZcuVtPWv3GuBtR9KxXwUvhgMZSguxzBEHLNRTVtcEWe1GD8zv7u%40ZPuVteuztexZFTHrwzDvqs2osGIRVOXI33LXFuyWWJL0IBggc1a&device_ratio=2&tn=B_NORMAL_MAP&nn=0&u_loc=12967743,4840033&ie=utf-8&t=1564712258807'
     bd_cai_url_json = 'https://map.baidu.com/?newmap=1&reqflag=pcmap&biz=1&from=webmap&da_par=after_baidu&pcevaname=pc4.1&qt=s&da_src=searchBox.button&wd=%E6%B4%BB%E9%B1%BC%E5%86%9C%E5%AE%B6%E8%8F%9C&c=168&src=0&wd2=&pn=0&sug=0&l=19&b=(12524462.465,4915415;12524952.465,4915809)&from=webmap&biz_forward={%22scaler%22:2,%22styles%22:%22pl%22}&sug_forward=&auth=F468SdW9ODYCQDfxcDa7KLFxbaxGBPX3uxHLENxxNHEtBnlQADZZzy1uVt1GgvPUDZYOYIZuVt1cv3uVtGccZcuVtPWv3GuztQZ3wWvUvhgMZSguxzBEHLNRTVtcEWe1GD8zv7u%40ZPuVtcvY1SGpuxztpFNEhjzgjyBKOHQBBODKximNNzCPyGllhIK&device_ratio=2&tn=B_NORMAL_MAP&nn=0&u_loc=12967743,4840033&ie=utf-8&t=1564711758575'
     # 博客
     blog_url = 'https://blog.csdn.net/a_yue10/article/details/97392747'
     # 代理网址
-    mo_gu_url = 'http://piping.mogumiao.com/proxy/api/get_ip_al?appKey=b4c273db82cc4492a8790045e9b43c54&count=5&expiryDate=0&format=1&newLine=2'
     easy_url = 'https://www.easy-mock.com/mock/5d3ea7aab080cd6e28ae9511/bigdata/ip_list'
 
-    def __init__(self):
+    def __init__(self, count=5):
         self._proxy_list = []
-        self._json_urls = [self.bd_cai_url_json, self.bd_main_url_json, self.gd_cai_url_net]
+        self._json_urls = [self.bd_cai_url_json, self.bd_main_url_json, self.gd_main_url_json, self.gd_cai_url_json]
+        self.mo_gu_url = 'http://piping.mogumiao.com/proxy/api/get_ip_al?appKey=b4c273db82cc4492a8790045e9b43c54&count=%d&expiryDate=0&format=1&newLine=2' % count
 
     def start(self, _type='easy'):
         if _type == 'mogu': self.get_mo_gu()
@@ -78,12 +71,12 @@ class MoGuRequest:
     def get_mo_gu(self):
         # 存储代理的列表
         req = requests.get(self.mo_gu_url, headers=headers, timeout=5)
-        print("mogu的json数据>>", req.json())
+        print("json数据__%s__>>" % 'mogu', req.json())
         try:
             for ips in req.json().get("msg"):
                 self._proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
         except Exception as e:
-            print("json解析错误", e)
+            print("json解析错误__%s__>>" % 'mogu', e)
         finally:
             self.wait_time(1)
 
@@ -97,11 +90,15 @@ class MoGuRequest:
         if proxy: proxy_meta, proxies = self.get_proxy_meta(proxy)
         try:
             req = requests.get(_url, headers=headers, proxies=proxies, timeout=5)
-            # print("json>>", req.text)
+            print("json>>", req.text)
             if req.status_code == 200:
                 if 'amap.com' in _url:
                     _url_type = '高德地图'
-                    name = req.json().get("data").get("base").get("name")
+                    jsonObj = req.json()
+                    if jsonObj.get("data"):
+                        name = jsonObj.get('data').get("base").get("name")
+                    elif jsonObj.get("poi_list"):
+                        name = jsonObj.get("poi_list")[0].get("name")
                     print("json获取成功__%s__>>" % _url_type, proxy_meta, name)
                 elif 'baidu' in _url:
                     _url_type = '百度地图'
@@ -197,16 +194,17 @@ class MoGuRequest:
         time.sleep(_time)
 
 
-def test_proxy_request(_type='mogu'):
-    mogu = MoGuRequest()
+def test_proxy_request(_type='mogu', count=2):
+    mogu = MoGuRequest(count=count)
     mogu.start(_type=_type)
 
 
-def test_json_request(_url=MoGuRequest.gd_main_url_net):
+def test_json_request(_url=MoGuRequest.gd_cai_url_json):
     mogu = MoGuRequest()
     mogu.get_easy_json(_url=_url)
 
 
 if __name__ == '__main__':
+    # test_proxy_request(count=5)
     # test_proxy_request(_type='mogu')
-    test_proxy_request()
+    test_json_request(_url=MoGuRequest.gd_cai_url_json)
