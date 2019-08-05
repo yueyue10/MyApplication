@@ -203,7 +203,7 @@ def test_blog_request():
 
 
 if __name__ == '__main__':
-    # test_proxy_request(count=5)
-    test_proxy_request(_type='mogu')
+    test_proxy_request(count=5)
+    # test_proxy_request(_type='mogu')
     # test_blog_request()
     # test_json_request(_url=MoGuRequest.bd_main_url_json)

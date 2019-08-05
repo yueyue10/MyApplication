@@ -4,6 +4,7 @@ import time
 from selenium import webdriver
 
 # 各种移动端
+
 user_agent_list_3 = [
     "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
     "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
@@ -29,8 +30,10 @@ class SeleniumClient:
         self.proxy_meta = ''
         if proxy:
             self.proxy_meta = self.get_proxy(proxy=proxy)
-            self.chromeOptions.add_argument("--proxy-server=%s" % self.proxy_meta)
+            self.chromeOptions.add_argument('--proxy-server="%s"' % self.proxy_meta)
+            # print('--proxy-server="%s"' % self.proxy_meta)
         self.agent = random.choice(user_agent_list_3)
+        self.chromeOptions.add_argument('--headless')
         self.chromeOptions.add_argument('lang=zh_CN.UTF-8')
         self.chromeOptions.add_argument('user-agent="%s"' % self.agent)
         self.browser = webdriver.Chrome(options=self.chromeOptions)
@@ -63,7 +66,7 @@ class SeleniumClient:
         _proxy_http = split_proxy[0]
         _proxy_host = split_proxy[1]
         _proxy_port = split_proxy[2]
-        proxy_meta = "%(http)s://%(host)s:%(port)s" % {
+        proxy_meta = "%(http)s=%(host)s:%(port)s" % {
             "http": _proxy_http,
             "host": _proxy_host,
             "port": _proxy_port
