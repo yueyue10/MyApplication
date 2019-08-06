@@ -21,7 +21,7 @@ def job_brush_flow():
 
 
 def start_scheduler():
-    trigger = CronTrigger(day_of_week='mon-sun', hour='11-14', minute='30')
+    trigger = CronTrigger(day_of_week='mon-sun', hour='9-18', minute='45')
     scheduler.add_job(job_brush_flow, trigger)  # 根据需要进行设置
     scheduler.start()
 

@@ -63,9 +63,9 @@ class MoGuRequest:
     # 请求蘑菇代理ip
     def get_mo_gu(self):
         # 存储代理的列表
-        req = requests.get(self.mo_gu_url, headers=headers, timeout=5)
-        print("json数据__%s__>>" % 'mogu', req.json())
         try:
+            req = requests.get(self.mo_gu_url, headers=headers, timeout=5)
+            print("json数据__%s__>>" % 'mogu', req.json())
             for ips in req.json().get("msg"):
                 self._proxy_list.append("https" + '#' + ips.get("ip") + '#' + ips.get("port"))
         except Exception as e:

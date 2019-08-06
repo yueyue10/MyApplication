@@ -52,7 +52,7 @@ class SeleniumClient:
             self.quit()
 
     def print_content(self):
-        time.sleep(1)
+        time.sleep(2)
         span_text = self.browser.find_elements_by_xpath('//span[@class="name text-overflow"]')
         if span_text:
             print("html获取成功__高德地图__>>%s" % self.proxy_meta, span_text[0].text)
