@@ -1,1 +1,1 @@
-include ':app', ':kotlin_demo', ':mvp_demo', ':sticky_header_listview', ':qmui_demo'//, ':smart_refresh', ':dagger_demo', ':hotfix_android_demo', ':greendao', ':catchcraycat'
+include ':dagger_demo'//,':app', ':kotlin_demo', ':mvp_demo', ':sticky_header_listview', ':qmui_demo', ':smart_refresh', ':hotfix_android_demo', ':greendao', ':catchcraycat'
