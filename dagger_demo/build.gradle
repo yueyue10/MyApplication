@@ -1,28 +1,47 @@
+import com.environmt.plugin.EnvironMnt
+
 apply plugin: 'com.android.application'
+apply plugin: com.environmt.plugin.ApkChangeNamePlugin
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
-
     defaultConfig {
         applicationId "com.encdata.dagger_demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    flavorDimensions "environment"
+    productFlavors {
+        //默认 大峡谷景区  bsc是巴松措景区
+        dxg {
+            dimension "environment"
+        }
+        bsc {
+            dimension "environment"
+        }
+    }
+    productFlavors.each {
+        flavors ->
+            def environmnt = new EnvironMnt()
+            environmnt.config_environ(flavors.name, 'GENIUS')
+            println("apply project : " + environmnt.getBASE_URL())
+            flavors.buildConfigField 'String', 'BASE_URL', String.format("\"%s\"", environmnt.BASE_URL)
+            flavors.buildConfigField 'String', 'HOST', String.format("\"%s\"", environmnt.HOST)
+//            flavors.buildConfigField 'int', 'PORT', environmnt.PORT
+            flavors.buildConfigField 'String', 'VIRTUAL_HOST', String.format("\"%s\"", environmnt.VIRTUAL_HOST)
+            flavors.buildConfigField 'String', 'USERNAME', String.format("\"%s\"", environmnt.USERNAME)
+            flavors.buildConfigField 'String', 'PASSWORD', String.format("\"%s\"", environmnt.PASSWORD)
+    }
 }
 
 dependencies {

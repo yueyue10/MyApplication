@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+//publish to local directory
+group "com.environmt.plugin"
+version = '1.0.0'
+
+repositories {
+    jcenter()
+}
+
+uploadArchives { //当前项目可以发布到本地文件夹中
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo')) //定义本地maven仓库的地址
+        }
+    }
+}

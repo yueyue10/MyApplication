@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <!--  日志保存路径  -->
+    <environment name='TRAVEL'>
+        <BASE_URL>http://travel.enn.cn/</BASE_URL>
+        <HOST>123.58.242.146</HOST>
+        <PORT>5672</PORT>
+        <VIRTUAL_HOST>prod</VIRTUAL_HOST>
+        <USERNAME>dxg</USERNAME>
+        <PASSWORD>dxg</PASSWORD>
+    </environment>
+    <environment name='GENIUS'>GENIUS
+        <BASE_URL>http://genius.enn.cn/</BASE_URL>
+        <HOST>123.58.242.146</HOST>
+        <PORT>5672</PORT>
+        <VIRTUAL_HOST>test</VIRTUAL_HOST>
+        <USERNAME>dxg</USERNAME>
+        <PASSWORD>dxg</PASSWORD>
+    </environment>
+    <environment name="TX">
+        <BASE_URL>http://tx.enn.cn/</BASE_URL>
+        <HOST>123.58.242.146</HOST>
+        <PORT>5672</PORT>
+        <VIRTUAL_HOST>test</VIRTUAL_HOST>
+        <USERNAME>dxg</USERNAME>
+        <PASSWORD>dxg</PASSWORD>
+    </environment>
+</config>
