@@ -17,3 +17,5 @@
 | sticky_header_listview|   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/sticky_header_listview" >sticky_header_listview功能介绍</a></h3>  |
 | python_demo           |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo" >python语法学习demo</a></h3>  |
 | appium_demo           |   <h3 align="center"><a href="https://github.com/yueyue10/MyApplication/tree/master/python_project/python_demo/appium_demo" >appium学习demo</a></h3>  |
+
+[![MyApplication](https://starchart.cc/yueyue10/MyApplication.svg)](https://starchart.cc/yueyue10/MyApplication)     
