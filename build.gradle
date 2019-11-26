@@ -9,7 +9,7 @@ buildscript {
         maven { url uri('repo') }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
         classpath 'com.environmt.plugin:buildSrc:1.0.0'
 //        classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
